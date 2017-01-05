@@ -11,7 +11,7 @@ class Setting extends Model
 {
 	public static $available_data_types = ['text' , 'textarea' , 'boolean' , 'date' , 'photo' , 'array'] ;
 	public static $available_categories = ['socials' , 'contact' , 'template' , 'database'] ;
-	public static $full_categories = ['socials' , 'contact' , 'template' , 'database' , 'accounts'] ;
+	public static $full_categories = ['socials' , 'contact' , 'template' , 'database' ] ;
 	public static $default_when_not_found = '-' ;
 	public static $unset_signals = ['unset' , 'default' , '=' , ''] ;
 	public static $reserved_slugs = 'none,setting' ;
@@ -87,6 +87,8 @@ class Setting extends Model
 	public function categories()
 	{
 		$return = [] ;
+
+		// Real Categories...
 		foreach(self::$full_categories as $category)  {
 			$trans = "manage.settings.downstream_settings.category.$category" ;
 			if(Lang::has($trans))
@@ -95,6 +97,13 @@ class Setting extends Model
 				$caption = $category ;
 			array_push($return , [$category , $caption]) ;
 		}
+
+		// Branch Categories...
+		$branches = Branch::selector('category')->get();
+		foreach($branches as $branch) {
+			array_push($return , ['categories/'.$branch->slug , trans('posts.categories.categories_of').' '.$branch->plural_title]);
+		}
+//		dd($branches);
 
 		return $return ;
 	}

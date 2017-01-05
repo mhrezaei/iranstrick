@@ -1,6 +1,6 @@
 <?php
 return [
-		'page_title' => 'صرافی میهن',
+		'page_title' => 'ایران استریک',
 		'index' => 'پیشخوان' ,
 		'logout' => 'خروج' ,
 		'grid_count' => 'در حال نمایش :rows سطر از مجموع :total سطر موجود اطلاعات'  ,
@@ -83,6 +83,7 @@ return [
 				'category_new' => 'دسته‌بندی تازه' ,
 				'category_edit' => 'ویرایش دسته‌بندی' ,
 				'category_delete_alert_posts' => 'این دسته‌بندی برای :count مطلب در نظر گرفته شده است. پاک کردن دسته‌بندی، مطلب یا مطالب مرتبط را «پادرهوا» خواهد ساخت.' ,
+				'category_delete_alert_children' => "این دسته‌بندی :count زیرمجموعه دارد و حذف امکان‌پذیر نیست.",
 				'category_delete_alert' => 'این حذف، غیر قابل بازیافت است.' ,
 
 				'downstream_settings' => [

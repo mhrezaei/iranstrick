@@ -14,6 +14,14 @@ class Category extends Model
 	public static $reserved_slugs = 'none,without' ;
 	protected $guarded = ['id'] ;
 
+	/*
+	|--------------------------------------------------------------------------
+	| Relations
+	|--------------------------------------------------------------------------
+	|
+	*/
+
+
 	public function posts()
 	{
 		return $this->hasMany('App\Models\Post');
@@ -23,5 +31,29 @@ class Category extends Model
 	{
 		return $this->belongsTo('App\Models\Branch');
 	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Accessors & Mutators
+	|--------------------------------------------------------------------------
+	|
+	*/
+
+	public function getChildrenAttribute()
+	{
+		return self::where('parent_id' , $this->id);
+	}
+
+	public function getParentAttribute()
+	{
+		$parent = self::find($this->parent_id) ;
+		if(!$parent)
+			$parent = new self ;
+
+		return $parent ;
+	}
+
+
+
 }
 

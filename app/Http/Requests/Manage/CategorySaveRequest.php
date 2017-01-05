@@ -27,11 +27,17 @@ class CategorySaveRequest extends Request
     public function rules()
     {
         $input = $this->all();
-        return [
-             'branch_id' => 'required|numeric|exists:branches,id',
-             'title' => 'required|unique:categories,title,'.$input['id'].',id,branch_id,'.$input['branch_id'],
-             'slug' => 'required|alpha_dash|not_in:'.Category::$reserved_slugs.'|unique:categories,slug,'.$input['id'].',id,branch_id,'.$input['branch_id'],
-        ];
+        if($input['_submit']=='save') {
+            return [
+                 'branch_id' => 'required|numeric|exists:branches,id',
+                 'title' => 'required|unique:categories,title,'.$input['id'].',id,branch_id,'.$input['branch_id'],
+                 'slug' => 'required|alpha_dash|not_in:'.Category::$reserved_slugs.'|unique:categories,slug,'.$input['id'].',id,branch_id,'.$input['branch_id'],
+            ];
+        }
+        else {
+            return [] ;
+        }
+
 
     }
 
@@ -39,9 +45,10 @@ class CategorySaveRequest extends Request
     {
         $value	= parent::all();
         $purified = ValidationServiceProvider::purifier($value,[
-	        'province_id'  =>  'number',
-	        'domain_id' => 'number' ,
+             'branch_id' => "number",
+             'parent_id' => "number",
              'featured_image' => 'stripUrl' ,
+            'slug' => "lower",
         ]);
         return $purified;
 

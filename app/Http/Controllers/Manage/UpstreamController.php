@@ -31,8 +31,9 @@ class UpstreamController extends Controller
 		$this->page[0] = ['upstream' , trans('manage.settings.upstream') , ];
 	}
 
-	public function index($request_tab = 'downstream')
+	public function index($request_tab = 'downstream' , $parent_id = 0)
 	{
+//		dd($parent_id);
 		//Preparetions...
 		$page = $this->page;
 		$page[1] = [$request_tab , trans("manage.settings.$request_tab")];
@@ -46,10 +47,6 @@ class UpstreamController extends Controller
 			case 'branches' :
 				$model_data = Branch::orderBy('plural_title')->get();
 				break ;
-
-			case 'departments' :
-				$model_data = Department::orderBy('title')->get() ;
-				break;
 
 			case 'downstream' :
 				$model_data = Setting::orderBy('category')->orderBy('title')->paginate(100) ;

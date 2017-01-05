@@ -64,7 +64,11 @@ return [
 
 	'categories' => [
 		'categories' => 'دسته‌بندی‌ها' ,
+		'categories_of' => 'دسته‌های' ,
 		'category' => 'دسته‌بندی' ,
+		'sub_categories' => "زیرمجموعه‌ها",
+		'sub_category' => "زیرمجموعه",
+		'sub_category_of' => "زیرمجموعه‌ی",
 		'without' => 'پادرهوا',
 		'withouts' => 'بدون دسته‌ها' ,
 		'all' => 'همه‌ی دسته‌ها' ,

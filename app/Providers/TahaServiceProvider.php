@@ -140,33 +140,6 @@ class TahaServiceProvider extends ServiceProvider
 
     }
 
-    public static function sidebarTicketsMenu()
-    {
-        $departments = Department::orderBy('title')->get() ;
-        $array = [] ;
-        $sub_menus = [] ;
-
-        foreach($departments as $department) {
-            if(Auth::user()->can("tickets-$department->slug")) {
-                array_push($sub_menus , [
-                     'tickets/'.$department->slug ,
-                     $department->title ,
-                     $department->icon ,
-                ]);
-            }
-        }
-
-        $array = [
-             'icon' => 'ticket' ,
-             'caption' => trans('manage.modules.tickets') ,
-             'link' => 'tickets' ,
-             'sub_menus' => $sub_menus ,
-             'permission' =>  sizeof($sub_menus)? 'any' : 'dev',
-        ];
-
-        return $array ;
-
-    }
 
     public static function sidebarPostsMenu()
     {

@@ -243,8 +243,12 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 	*/
 		Route::group(['prefix'=>'settings'  , 'middleware' => 'can:super'], function() {
 			Route::get('/' , 'SettingsController@index') ;
+			Route::get('/categories/new/{branch_slug}/{parent_id}' , 'SettingsController@newCategory') ;
+			Route::get('/categories/edit/{item_id}' , 'SettingsController@editCategory') ;
+			Route::get('/categories/{branch_slug}/{parent_id?}' , 'SettingsController@categories') ;
 			Route::get('/{request_tab}/' , 'SettingsController@index') ;//@TODO: INTACT
 
+			Route::post('/save/category' , 'settingsController@saveCategory');
 			Route::post('/save' , 'settingsController@save');
 
 		});
@@ -257,7 +261,7 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 		Route::get('/{request_tab?}' , 'UpstreamController@index') ;
 		Route::get('/{request_tab}/search/{keyword}' , 'UpstreamController@search') ;
 		Route::get('/edit/{request_tab?}/{item_id?}/{parent_id?}' , 'UpstreamController@editor') ;
-		Route::get('/{request_tab}/{item_id}' , 'UpstreamController@item') ;
+		Route::get('/{request_tab}/{item_id}/{parent_id?}' , 'UpstreamController@item') ;
 
 		Route::group(['prefix' => 'save'] , function() {
 			Route::post('state' , 'UpstreamController@saveProvince');

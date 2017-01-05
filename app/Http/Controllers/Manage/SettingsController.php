@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Manage;
 
 use App\Models\Account;
 use App\models\Branch;
+use App\Models\Category;
 use App\Models\Domain;
 use App\Models\Post_cat;
 use App\Models\Setting;
@@ -46,6 +47,58 @@ class SettingsController extends Controller
 
 	}
 
+	public function categories($branch_slug , $parent_id = 0)
+	{
+		//Preparetions...
+		$branch = Branch::findBySlug($branch_slug) ;
+		if(!$branch or !$branch->hasFeature('category'))
+			return view('errors.404');
+
+		$page[0] = ['settings' , trans('manage.settings.downstream')];
+		$page[1] = ['categories/'.$branch->slug , trans('posts.categories.categories_of').' '.$branch->plural_title];
+
+		//Model...
+		$db = new Setting() ;
+		$model_data = $branch->categories()->where('parent_id' , $parent_id)->get() ;
+
+		$parent = Category::find($parent_id);
+		if(!$parent)
+			$parent = new Category() ;
+
+		//Show...
+		return view("manage.settings.categories" , compact('page' , 'branch' , 'parent' , 'model_data' , 'db'));
+
+	}
+
+	public function newCategory($branch_slug , $parent_id)
+	{
+		//Preparation...
+		$branch = Branch::findBySlug($branch_slug) ;
+		if(!$branch or !$branch->hasFeature('category'))
+			return view('errors.m404');
+
+		//Model...
+		$model = new Category() ;
+		$model->branch_id = $branch->id ;
+		$model->parent_id = $parent_id ;
+
+		//View...
+		return view("manage.settings.categories_edit",compact('model'));
+
+	}
+
+	public function editCategory($item_id)
+	{
+		//Model...
+		$model = Category::find($item_id);
+		if(!$model)
+			return view("errors.m404");
+
+		//View...
+		return view("manage.settings.categories_edit",compact('model'));
+
+
+	}
 
 
 	/*
@@ -69,6 +122,36 @@ class SettingsController extends Controller
 		return $this->jsonSaveFeedback($ok , [
 			'success_refresh' => true  ,
 		]);
+
+
+	}
+
+	public function saveCategory(Requests\Manage\CategorySaveRequest $request)
+	{
+
+		//If Save...
+		if($request->_submit == 'save') {
+			$ok = Category::store($request);
+
+			return $this->jsonSaveFeedback($ok , [
+					'success_refresh' => true  ,
+			]);
+		}
+
+
+		//If Delete...
+		if($request->_submit == 'delete') {
+			$model = Category::find($request->id) ;
+			if(!$model or $model->children->count() > 0)
+				return $this->jsonFeedback();
+
+			$model->posts()->update(['category_id' => '0']);
+			return $this->jsonAjaxSaveFeedback($model->forceDelete() , [
+					'success_refresh' => true,
+			]);
+
+		}
+
 
 
 	}
