@@ -243,13 +243,23 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 	*/
 		Route::group(['prefix'=>'settings'  , 'middleware' => 'can:super'], function() {
 			Route::get('/' , 'SettingsController@index') ;
+
 			Route::get('/categories/new/{branch_slug}/{parent_id}' , 'SettingsController@newCategory') ;
 			Route::get('/categories/edit/{item_id}' , 'SettingsController@editCategory') ;
 			Route::get('/categories/{branch_slug}/{parent_id?}' , 'SettingsController@categories') ;
-			Route::get('/{request_tab}/' , 'SettingsController@index') ;//@TODO: INTACT
 
-			Route::post('/save/category' , 'settingsController@saveCategory');
-			Route::post('/save' , 'settingsController@save');
+			Route::get('/handles' , 'SettingsController@handles');
+			Route::get('/handles/fields/{item_id}' , 'SettingsController@fields');
+			Route::get('/handles/edit/{item_id}' , 'SettingsController@editHandle');
+
+			Route::get('/{request_tab}/' , 'SettingsController@index') ;
+
+			Route::group(['prefix'=>'save'] , function() {
+				Route::post('/' , 'settingsController@save');
+				Route::post('/category' , 'settingsController@saveCategory');
+				Route::post('/handle' , 'settingsController@saveHandle');
+			});
+
 
 		});
 

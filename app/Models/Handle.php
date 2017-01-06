@@ -4,18 +4,18 @@ namespace App\Models;
 
 use App\Traits\TahaModelTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Handle extends Model
 {
-	use TahaModelTrait , SoftDeletes ;
+	use TahaModelTrait  ;
 
 	protected $guarded = ['id'];
-	public static $meta_fields = ['dynamic'];
+	public static $meta_fields = ['color_code'];
 	protected $casts = [
 		'meta' => 'array' ,
 		'fields' => 'array' ,
 	];
+	public static $available_color_codes = ['red','orange','purple','green','teal','blue','gray','dark','brown','white'] ;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -24,10 +24,28 @@ class Handle extends Model
 	|
 	*/
 
-	public function events()
+	public function entries()
 	{
-		return $this->hasMany('App\Models\Event');
+		return $this->hasMany('App\Models\Entry');
 	}
+
+
+	public function fields()
+	{
+		return $this->hasMany('App\Models\Field');
+	}
+
+	/*
+	|--------------------------------------------------------------------------
+	| Accessors and Mutuators
+	|--------------------------------------------------------------------------
+	|
+	*/
+	public function getAvailableColorCodesAttribute()
+	{
+		return self::$available_color_codes ;
+	}
+
 
 	/*
 	|--------------------------------------------------------------------------
