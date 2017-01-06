@@ -57,7 +57,7 @@
 						</td>
 						<td>
 							<a href="{{ url("manage/settings/handles/fields/$model->id") }}">
-								@pd( $model->fields()->count() )&nbsp;{{ trans('entries.field') }}
+								@pd( $model->fields()->count()+1 )&nbsp;{{ trans('entries.field') }}
 							</a>
 						</td>
 					</tr>

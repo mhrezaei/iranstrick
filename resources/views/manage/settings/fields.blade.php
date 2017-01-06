@@ -44,10 +44,17 @@
 				</tr>
 				</thead>
 				<tbody>
+
+				<tr>
+					<td>@pd(1)</td>
+					<td>{{ trans('validation.attributes.description') }}</td>
+					<td><i class="fa fa-check f12 text-success"></i></td>
+				</tr>
+
 				@foreach($model_data as $key=> $model)
 					<tr aria-atomic="{{$model->spreadMeta()}}">
 						<td>
-							@pd($key+1)
+							@pd($key+2)
 						</td>
 						<td>
 							<a href="javascript:void(0)" onclick="masterModal('{{url("manage/settings/handles/fields/edit/$model->id/")}}')">
