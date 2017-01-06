@@ -101,7 +101,7 @@ class Setting extends Model
 		// Entry Categories...
 		array_push($return , [
 				'handles' ,
-				trans('entries.handles') ,
+				trans('calendar.handles') ,
 		]);
 
 		// Branch Categories...

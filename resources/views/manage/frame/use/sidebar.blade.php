@@ -4,6 +4,12 @@
 	'link' => 'index' ,
 ])
 
+@include('manage.frame.widgets.sidebar-link' , [
+	'icon' => 'calendar-times-o' ,
+	'caption' => trans('calendar.title') ,
+	'link' => 'calendar' ,
+])
+
 {{--@include('manage.frame.widgets.sidebar-link' , [--}}
 	{{--'icon' => 'user' ,--}}
 	{{--'caption' => trans('manage.modules.customers') ,--}}

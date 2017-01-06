@@ -1,7 +1,7 @@
 @include('templates.modal.start' , [
 	'partial' => true ,
 	'form_url' => url('manage/settings/save/field'),
-	'modal_title' => $model->id? trans('entries.field_edit') : trans('entries.field_new'),
+	'modal_title' => $model->id? trans('calendar.field_edit') : trans('calendar.field_new'),
 ])
 <div class='modal-body'>
 
@@ -25,7 +25,7 @@
 
 	@include('forms.note' , [
 		'shape' => 'danger' ,
-		'text' => trans('entries.field_delete_alert') ,
+		'text' => trans('calendar.field_delete_alert') ,
 		'class' => '-delHandle noDisplay'
 	])
 

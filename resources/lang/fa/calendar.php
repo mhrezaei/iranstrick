@@ -1,5 +1,7 @@
 <?php
 return [
+	'title' => "سالنامه",
+
 	'entries' => "رویدادها",
 	'entry' => "رویداد",
 

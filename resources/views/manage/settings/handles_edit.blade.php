@@ -1,7 +1,7 @@
 @include('templates.modal.start' , [
 	'partial' => true ,
 	'form_url' => url('manage/settings/save/handle'),
-	'modal_title' => $model->id? trans('entries.handle_edit') : trans('entries.handle_new'),
+	'modal_title' => $model->id? trans('calendar.handle_edit') : trans('calendar.handle_new'),
 ])
 <div class='modal-body'>
 
@@ -25,7 +25,7 @@
 	@if($model->id and $entries = $model->entries()->count())
 		@include('forms.note' , [
 			'shape' => 'warning' ,
-			'text' => trans('entries.handle_delete_alert_entries' , ['count' => $entries]) ,
+			'text' => trans('calendar.handle_delete_alert_entries' , ['count' => $entries]) ,
 			'class' => '-delHandle noDisplay'
 		])
 	@endif
