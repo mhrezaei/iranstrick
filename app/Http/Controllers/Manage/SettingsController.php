@@ -54,7 +54,7 @@ class SettingsController extends Controller
 	{
 		//Preparetions...
 		$page[0] = ['settings' , trans('manage.settings.downstream')];
-		$page[1] = ['handles' , trans('entries.handles') ];
+		$page[1] = ['handles' , trans('calendar.handles') ];
 
 		//Model...
 		$db = new Setting() ;
@@ -74,8 +74,8 @@ class SettingsController extends Controller
 			return view('errors.410');
 
 		$page[0] = ['settings' , trans('manage.settings.downstream')];
-		$page[1] = ['handles' , trans('entries.handles') ];
-		$page[2] = ['handles' , trans('entries.fields_of').' '.$handle->title];
+		$page[1] = ['handles' , trans('calendar.handles') ];
+		$page[2] = ['handles' , trans('calendar.fields_of').' '.$handle->title];
 
 		//Model...
 		$db = new Setting() ;

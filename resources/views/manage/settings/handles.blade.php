@@ -12,7 +12,7 @@
 	<div class="panel panel-toolbar row w100">
 		<div class="col-md-8">
 			<p class="title">
-				{{ trans('entries.handles') }}
+				{{ trans('calendar.handles') }}
 			</p>
 		</div>
 		<div class="col-md-4 tools">
@@ -40,7 +40,7 @@
 				<tr>
 					<td>#</td>
 					<td>{{ trans('validation.attributes.title') }}</td>
-					<td>{{ trans('entries.fields') }}</td>
+					<td>{{ trans('calendar.fields') }}</td>
 				</tr>
 				</thead>
 				<tbody>
@@ -57,7 +57,7 @@
 						</td>
 						<td>
 							<a href="{{ url("manage/settings/handles/fields/$model->id") }}">
-								@pd( $model->fields()->count()+1 )&nbsp;{{ trans('entries.field') }}
+								@pd( $model->fields()->count()+1 )&nbsp;{{ trans('calendar.field') }}
 							</a>
 						</td>
 					</tr>
