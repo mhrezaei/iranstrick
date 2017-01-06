@@ -249,8 +249,10 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 			Route::get('/categories/{branch_slug}/{parent_id?}' , 'SettingsController@categories') ;
 
 			Route::get('/handles' , 'SettingsController@handles');
-			Route::get('/handles/fields/{item_id}' , 'SettingsController@fields');
 			Route::get('/handles/edit/{item_id}' , 'SettingsController@editHandle');
+			Route::get('/handles/fields/{item_id}' , 'SettingsController@fields');
+			Route::get('/handles/fields/edit/{item_id}' , 'SettingsController@editField');
+			Route::get('/handles/fields/{handle_id}/new' , 'SettingsController@newField');
 
 			Route::get('/{request_tab}/' , 'SettingsController@index') ;
 
@@ -258,6 +260,7 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 				Route::post('/' , 'settingsController@save');
 				Route::post('/category' , 'settingsController@saveCategory');
 				Route::post('/handle' , 'settingsController@saveHandle');
+				Route::post('/field' , 'settingsController@saveField');
 			});
 
 
