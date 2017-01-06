@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Http\Controllers\Controller;
 use App\Models\Domain;
+use App\Providers\AppServiceProvider;
+use App\Providers\CalendarServiceProvider;
+use App\Providers\TahaServiceProvider;
 use App\Traits\TahaControllerTrait;
+use Illuminate\Support\ServiceProvider;
+use Morilog\Jalali\jDate;
 
 
 class CalendarController extends Controller
@@ -15,13 +21,23 @@ class CalendarController extends Controller
 	{
 	}
 
-	public function index($request_tab = 'database')
+	public function index($year = 0 , $month = 0 , $day = 0)
 	{
 		//Preparetions...
-		$page[0] = ['settings' , trans('manage.settings.downstream')];
-		$page[1] = [$request_tab , trans("manage.settings.downstream_settings.category.$request_tab")];
+		$date = CalendarServiceProvider::renderRequestDate($year , $month , $day) ;
 
-		echo 'calendar' ;
+		$page[0] = ['calendar' , trans('calendar.title')];
+		$page[1] = ['month' , trans('calendar.month_view')];
+		$page[2] = [
+				jDate::forge($date)->format('Y').'/'.jDate::forge($date)->format('m').'/'.jDate::forge($date)->format('j') ,
+				AppServiceProvider::pd(jDate::forge($date)->format('F Y'))
+		] ;
+
+
+//		dd(jDate::forge($date)->format('Y/m/d'));
+
+		return view("manage.calendar.month",compact('page' , 'date'));
+
 	}
 
 }

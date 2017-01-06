@@ -70,6 +70,9 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 
 	Route::group(['prefix'=>'calendar'] , function() {
 		Route::get('/' , 'CalendarController@index');
+		Route::get('/month/{year?}/{month?}/{day?}' , 'CalendarController@index');
+
+		Route::get('entry/new' , 'CalendarController@entryNew');
 	});
 
 	/*
