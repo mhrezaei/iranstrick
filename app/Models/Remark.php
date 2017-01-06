@@ -16,9 +16,9 @@ class Remark extends Model
 	|--------------------------------------------------------------------------
 	|
 	*/
-	public function event()
+	public function note()
 	{
-		return $this->belongsTo('App\Models\Event');
+		return $this->belongsTo('App\Models\Note');
 
 	}
 

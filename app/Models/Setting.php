@@ -98,10 +98,19 @@ class Setting extends Model
 			array_push($return , [$category , $caption]) ;
 		}
 
+		// Entry Categories...
+		array_push($return , [
+				'handles' ,
+				trans('entries.handles') ,
+		]);
+
 		// Branch Categories...
 		$branches = Branch::selector('category')->get();
 		foreach($branches as $branch) {
-			array_push($return , ['categories/'.$branch->slug , trans('posts.categories.categories_of').' '.$branch->plural_title]);
+			array_push($return , [
+					'categories/'.$branch->slug ,
+					trans('posts.categories.categories_of').' '.$branch->plural_title
+			]);
 		}
 //		dd($branches);
 

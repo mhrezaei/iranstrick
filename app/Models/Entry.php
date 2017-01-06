@@ -5,9 +5,8 @@ namespace App\Models;
 use App\Traits\TahaModelTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User;
 
-class Event extends Model
+class Entry extends Model
 {
 	use TahaModelTrait , SoftDeletes;
 
@@ -45,7 +44,7 @@ class Event extends Model
 	*/
 	public function getUserAttribute()
 	{
-		return User::find($this->created_by);
+		return User::find($this->created_by) ;
 	}
 
 
