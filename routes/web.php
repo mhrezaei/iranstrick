@@ -72,7 +72,11 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 		Route::get('/' , 'CalendarController@index');
 		Route::get('/month/{year?}/{month?}/{day?}' , 'CalendarController@index');
 
-		Route::get('entry/new' , 'CalendarController@entryNew');
+		Route::get('entry/new/{handle_id}/{year?}/{month?}/{day?}' , 'CalendarController@entryNew');
+		Route::group(['prefix'=>'save'] , function() {
+			Route::post('/entry' , 'CalendarController@entrySave');
+			Route::post('/entry_first_step' , 'CalendarController@entryFirstStep');
+		});
 	});
 
 	/*

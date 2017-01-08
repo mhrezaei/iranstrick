@@ -40,12 +40,26 @@ class CalendarServiceProvider extends ServiceProvider
             $day = $now->format('j')  ;
 
         if(!jDateTime::checkDate($year , $month , $day))
-            return view('errors.410');
+            return false; //view('errors.410');
 
         $date = jDateTime::createCarbonFromFormat("Y/n/j H:i" , "$year/$month/$day 12:00") ;
         return $date ;
 
     }
 
+    public static function renderFullMonth($year, $month)
+    {
+        $result = [] ;
+
+        for($day = 1 ; $day<=31 ; $day++) {
+            $result[$day] = jDateTime::createCarbonFromFormat("Y/n/j H:i" , "$year/$month/$day 00:00") ;
+
+            if($day+1 >= 30 and !jDateTime::checkDate($year , $month , $day+1))
+                break;
+        }
+        $result['total_days'] = $day ;
+        $result['first_day'] = jDate::forge($result[1])->format('N') ;
+        return $result ;
+    }
 
 }

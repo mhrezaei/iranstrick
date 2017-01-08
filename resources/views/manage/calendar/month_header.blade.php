@@ -4,7 +4,7 @@
 
 		@if(Auth::user()->can('customers.create'))
 			@include('manage.frame.widgets.toolbar_button' , [
-				'target' => 'masterModal("'. url('manage/calendar/entry/new') . '") ',
+				'target' => 'handleSelector("0","0","0")',
 				'type' => 'success' ,
 				'caption' => trans('calendar.new_entry') ,
 				'icon' => 'plus-circle' ,

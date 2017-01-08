@@ -44,14 +44,14 @@ function rowUpdate($table_id , $model_id)
 }
 function masterModal($url,$size)
 {
-	//Preparetions...
 	if(!$size) $size = 'lg' ;
 	var $modal_selector = '#masterModal-' + $size ;
-
 	//Form Load...
 	$($modal_selector + ' .modal-content').html('<div class="modal-wait">...</div>').load($url , function() {
 		$('.selectpicker').selectpicker();
 	});
+
+	//Preparetions...
 	$($modal_selector).modal() ;
 
 
@@ -62,7 +62,7 @@ function modalForm($modal_id , $item_id , $parent_id)
 	if(!$parent_id) $parent_id='0' ;
 	var $modal_selector = '#' + $modal_id ;
 	var $form_selector = $modal_selector + ' form ' ;
-	var $url = $($form_selector+'._0').html().replace('-id-',$item_id).replace('-parent-',$parent_id);
+//	var $url = $($form_selector+'._0').html().replace('-id-',$item_id).replace('-parent-',$parent_id);
 
 	//Form Placement...
 	if($item_id=='0')
@@ -71,9 +71,9 @@ function modalForm($modal_id , $item_id , $parent_id)
 		$($modal_selector + '-title').html($($form_selector+'._1').html());
 
 	//Form Load...
-	$($form_selector + 'div.modal-body').html('....').load($url , function() {
-		$('.selectpicker').selectpicker();
-	});
+//	$($form_selector + 'div.modal-body').html('....').load($url , function() {
+//		$('.selectpicker').selectpicker();
+//	});
 	$($modal_selector).modal() ;
 
 }
@@ -162,8 +162,10 @@ function gridSelector($mood , $id)
 	}
 }
 
-function postEditorFeatures($special_action = null)
+function postEditorFeatures($special_action)
 {
+	if(!$special_action)
+		$special_action = null ;
 
 	switch( $special_action) {
 		case 'featured_image_inserted' :
