@@ -1,28 +1,18 @@
 <!DOCTYPE html>
-<html lang="fa">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-
-    @if(Setting::getLocale() == 'en')
-        {!! Html::style('assets/css/front-style-en.css') !!}
-    @else
-        {!! Html::style('assets/css/front-style.css') !!}
-    @endif
-    <script language="javascript">
-        function base_url($ext) {
-            if(!$ext) $ext = "" ;
-            var $result = '{{ URL::to('/') }}' + $ext ;
-            return $result  ;
-        }
-    </script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>@yield('page_title')</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/42e9d0c0f0.js"></script>
+</head>
 
-@if(Setting::getLocale() == 'en')
-    <body class="ltr">
-@else
-    <body>
-@endif
-@include('front.persian.frame.header_navbar')
-@include('front.persian.frame.header_menu')
+<body>
+
+@include('front.persian.frame.header_top_menu')

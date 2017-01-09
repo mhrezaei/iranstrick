@@ -28,20 +28,7 @@ class FrontController extends Controller
 
 	public function index()
 	{
-	    $front_slide = Post::selector($this->domain() . '-slide_show')->get();
-        $features = Post::selector($this->domain() . '-features')->get();
-		$services = Post::selector($this->domain() . '-services')->get();
-		$portfolio = Post::selector($this->domain() . '-portfolio')->get();
-        $front_about = Post::findBySlug($this->domain() . '-index_about');
-        if (SettingServiceProvider::isLocale('en'))
-        {
-            $products = Post::selector('en-products')->get();
-        }
-        else
-        {
-            $products = Product::all();
-        }
-	    return view('front.persian.home.0', compact('front_slide', 'features', 'services', 'front_about', 'products', 'portfolio'));
+	    return view('front.persian.home.0');
 	}
 
 	public function register(Requests\Front\AccountSaveRequest $request)
