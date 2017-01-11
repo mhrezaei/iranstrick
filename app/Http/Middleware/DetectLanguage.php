@@ -2,22 +2,28 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Domain;
+use App\Http\Requests\Request;
 use App\Traits\GlobalControllerTrait;
 use Closure;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
-class Subdomain
+class DetectLanguage
 {
     use GlobalControllerTrait;
     public function handle($request, Closure $next)
     {
-        if ($this->getDomain())
+        $lang = $request->segment(1);
+
+        if ($lang == 'fa' or $lang == 'en')
         {
-            Session::put('domain', $this->getDomain());
-            App::setLocale($this->getDomain());
+            \App::setLocale($lang);
         }
+        else
+        {
+            \App::setLocale('fa');
+        }
+
         return $next($request);
     }
 }
