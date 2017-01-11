@@ -228,7 +228,22 @@ class ControllerResolverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException \RuntimeException
+     * @group legacy
+     */
+    public function testIfExceptionIsThrownWhenMissingAnArgument()
+    {
+        $resolver = new ControllerResolver();
+        $request = Request::create('/');
+
+        $controller = array($this, 'controllerMethod1');
+
+        $resolver->getArguments($request, $controller);
+    }
+
+    /**
      * @requires PHP 7.1
+     * @group legacy
      */
     public function testGetNullableArguments()
     {
@@ -244,6 +259,7 @@ class ControllerResolverTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @requires PHP 7.1
+     * @group legacy
      */
     public function testGetNullableArgumentsWithDefaults()
     {

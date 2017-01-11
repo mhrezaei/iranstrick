@@ -56,14 +56,6 @@ class CalendarController extends Controller
 
 	public function entryNew($handle_id , $year = 0 , $month = 0 , $day = 0)
 	{
-		return view('templates.say' , ['array'=>[
-				$handle_id ,
-				$year ,
-				$month ,
-				$day ,
-
-		]]);
-
 		//Preparetions...
 		if($day>0) {
 			$date = CalendarServiceProvider::renderRequestDate($year , $month , $day) ;
