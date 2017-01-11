@@ -54,33 +54,34 @@
                     <div class="content">
                         <div class="owl-carousel links-slider">
                             <div class="item">
-                                <img src="uploads/link-img-1.png" height="75" style="width:auto">
+                                <img src="{{ url('/assets/images/link-img-1.png') }}" height="75" style="width:auto">
                             </div>
                             <div class="item">
-                                <img src="uploads/link-img-2.png" height="75" style="width:auto">
+                                <img src="{{ url('/assets/images/link-img-2.png') }}" height="75" style="width:auto">
                             </div>
                             <div class="item">
-                                <img src="uploads/link-img-3.png" height="75" style="width:auto">
+                                <img src="{{ url('/assets/images/link-img-3.png') }}" height="75" style="width:auto">
                             </div>
                             <div class="item">
-                                <img src="uploads/link-img-4.png" height="75" style="width:auto">
+                                <img src="{{ url('/assets/images/link-img-4.png') }}" height="75" style="width:auto">
                             </div>
                             <div class="item">
-                                <img src="uploads/link-img-1.png" height="75" style="width:auto">
+                                <img src="{{ url('/assets/images/link-img-1.png') }}" height="75" style="width:auto">
                             </div>
                             <div class="item">
-                                <img src="uploads/link-img-2.png" height="75" style="width:auto">
+                                <img src="{{ url('/assets/images/link-img-2.png') }}" height="75" style="width:auto">
                             </div>
                             <div class="item">
-                                <img src="uploads/link-img-3.png" height="75" style="width:auto">
+                                <img src="{{ url('/assets/images/link-img-3.png') }}" height="75" style="width:auto">
                             </div>
                             <div class="item">
-                                <img src="uploads/link-img-4.png" height="75" style="width:auto">
+                                <img src="{{ url('/assets/images/link-img-4.png') }}" height="75" style="width:auto">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

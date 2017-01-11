@@ -1,3 +1,4 @@
+
 <footer>
     <div class="container">
         <div class="row">
@@ -30,9 +31,8 @@
         </div>
     </div>
 </footer>
-</body>
-<script src="js/main.js"></script>
-</html>
+
+{!! Html::script ('assets/js/main.js') !!}
 <script>
     $(document).ready(function () {
         $(".main-header-slider").owlCarousel({
@@ -84,3 +84,6 @@
         });
     });
 </script>
+
+</body>
+</html>
