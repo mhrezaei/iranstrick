@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                IRANSTRICK<br>
-                Address text, address text<br>
-                983242344398+:Tel
+                {{ Setting::get(Setting::getLocale() . '_site_title') }}<br>
+                {{ Setting::get(Setting::getLocale() . '_address') }}<br>
+                {{ Setting::get(Setting::getLocale() . '_tel') }}
             </div>
             <div class="col-md-8">
                 <ul class="list-inline text-end">
@@ -14,8 +14,13 @@
                     <li><a href="">News & Events</a></li>
                     <li><a href="">Contact</a></li>
                     <li class="languages">
-                        <a href="/en" class="active">English</a>
-                        <a href="/fa">فارسی</a>
+                        @if(Setting::getLocale() == 'fa')
+                            <a href="{{ url('/en') }}">English</a>
+                            <a href="{{ url('/fa') }}" class="active">فارسی</a>
+                        @else
+                            <a href="{{ url('/en') }}" class="active">English</a>
+                            <a href="{{ url('/fa') }}">فارسی</a>
+                        @endif
                     </li>
                     <p></p>
                     <a>All rights reserved 2016</a>

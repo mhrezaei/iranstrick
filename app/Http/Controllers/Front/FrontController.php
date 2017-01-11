@@ -28,7 +28,8 @@ class FrontController extends Controller
 
 	public function index()
 	{
-	    return view('front.persian.home.0');
+	    $slider = Post::selector(self::domain() . '_home_slider')->orderBy('published_at', 'asc')->get();
+	    return view('front.persian.home.0', compact('slider'));
 	}
 
 	public function register(Requests\Front\AccountSaveRequest $request)

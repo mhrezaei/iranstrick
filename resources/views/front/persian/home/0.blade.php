@@ -6,34 +6,12 @@
 @endsection
 
 @section('content')
+    @include('front.persian.home.slider')
     <div class="container">
         <div class="row mobile-reverse">
             <div class="col-md-4">
-                <div class="widget">
-                    <div class="title-bar">
-                        <h3>Expo</h3>
-                        <a href="" class="show-more">See all</a>
-                    </div>
-                    <div class="content">
-                        <ul>
-                            <li><a href="">A beauty title comes here</a></li>
-                            <li><a href="">Another title comes here soon</a></li>
-                            <li><a href="">One more title</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="widget">
-                    <div class="title-bar">
-                        <h3>Downloads</h3>
-                    </div>
-                    <div class="content">
-                        <ul>
-                            <li><a href="">A beauty title comes here</a></li>
-                            <li><a href="">Another title comes here soon</a></li>
-                            <li><a href="">One more title</a></li>
-                        </ul>
-                    </div>
-                </div>
+                @include('front.persian.home.expo')
+                @include('front.persian.home.downloads')
             </div>
             <div class="col-md-8">
                 <div class="title-bar">
@@ -44,16 +22,16 @@
                         <div class="col-sm-5 col-xs-12">
                             <div class="owl-carousel highlights-slider">
                                 <div class="item">
-                                    <img src="uploads/header-slide-1.jpg" width="140" height="140">
+                                    <img src="{{ url('/assets/images/header-slide-1.jpg') }}" width="140" height="140">
                                 </div>
                                 <div class="item">
-                                    <img src="uploads/header-slide-2.jpg" width="140" height="140">
+                                    <img src="{{ url('/assets/images/header-slide-2.jpg') }}" width="140" height="140">
                                 </div>
                                 <div class="item">
-                                    <img src="uploads/header-slide-3.jpg" width="140" height="140">
+                                    <img src="{{ url('/assets/images/header-slide-3.jpg') }}" width="140" height="140">
                                 </div>
                                 <div class="item">
-                                    <img src="uploads/header-slide-1.jpg" width="140" height="140">
+                                    <img src="{{ url('/assets/images/header-slide-1.jpg') }}" width="140" height="140">
                                 </div>
                             </div>
                         </div>
