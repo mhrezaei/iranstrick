@@ -2,7 +2,7 @@
 
 
 @section('page_title')
-    salam
+    {{ Setting::get(Setting::getLocale() . '_site_title') }}
 @endsection
 
 @section('content')

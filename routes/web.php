@@ -157,7 +157,7 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 Route::group(['namespace' => 'Front', 'middleware' => 'DetectLanguage'], function (){
     Route::get('/', 'FrontController@index');
 
-    Route::group(['namespace' => 'Front', 'prefix' => '{lang}', 'middleware' => ['UserIpDetect']], function () {
+    Route::group(['prefix' => '{lang}', 'middleware' => ['UserIpDetect']], function () {
         // test
         Route::get('/hadi', 'UserController@test');
         Route::post('/hadi', 'FrontController@test2');
