@@ -5,7 +5,7 @@
                 <span>Menu  </span><i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="#">
-                <img src="images/logo-en.png" alt="IRANSTRICK" width="230">
+                <img src="{{ url('/') }}/assets/images/logo-en.png" alt="IRANSTRICK" width="230">
             </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
