@@ -71,7 +71,25 @@
 
         $(".highlights-slider").owlCarousel({
             items: 1,
-            animateOut: 'fadeOut'
+            mouseDrag: false,
+            touchDrag: false,
+            pullDrag: false,
+            loop: true,
+            autoplay: true
+        });
+        $(".highlights-slider-text").owlCarousel({
+            items: 1,
+            mouseDrag: false,
+            touchDrag: false,
+            pullDrag: false,
+            loop: true,
+            autoplay: true,
+        });
+        $(".highlights-slider").on('changed.owl.carousel', function(event) {
+            $(".highlights-slider-text").trigger('to.owl.carousel', event.page.index)
+        });
+        $(".highlights-slider-text").on('changed.owl.carousel', function(event) {
+            $(".highlights-slider").trigger('to.owl.carousel', event.page.index)
         });
 
         $(".links-slider").owlCarousel({

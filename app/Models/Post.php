@@ -394,7 +394,7 @@ class Post extends Model
 				$link = str_replace(' ', '_', $this->title);
 				$link = str_replace('/', '_', $link);
 
-				return url("pages/".$this->id."/".urlencode($link)) ;
+				return url('/' . SettingServiceProvider::getLocale() . "/pages/".$this->id."/".urlencode($link)) ;
 
 			case 'gallery_link' :
 				$link = str_replace(' ', '_', $this->title);

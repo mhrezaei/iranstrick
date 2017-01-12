@@ -163,12 +163,13 @@ Route::group(['namespace' => 'Front', 'middleware' => 'DetectLanguage'], functio
         Route::post('/hadi', 'FrontController@test2');
 
         Route::get('/', 'FrontController@index');
-        Route::post('/register/new', 'FrontController@register');
+        Route::get('/about', 'FrontController@about_page');
         Route::get('/register/confirm/{hash}', 'UserController@register_confirm');
         Route::get('/pages/{slug}/{title?}', 'FrontController@pages');
         Route::get('/contact', 'FrontController@contact');
         Route::get('/faq', 'FrontController@faq');
         Route::get('/news', 'FrontController@news');
+        Route::get('/expo', 'FrontController@expo');
         Route::get('/products', 'FrontController@products');
         Route::get('/products/show/{id}', 'FrontController@show_products');
 

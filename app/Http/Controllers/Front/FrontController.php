@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\User;
@@ -28,76 +29,24 @@ class FrontController extends Controller
 
 	public function index()
 	{
-	    $slider = Post::selector(self::domain() . '_home_slider')->orderBy('published_at', 'asc')->get();
-	    return view('front.persian.home.0', compact('slider'));
-	}
+	    $slider = Post::selector(self::domain() . '_home_slider')->orderBy('published_at', 'desc')->get();
 
-	public function register(Requests\Front\AccountSaveRequest $request)
-	{
-        $data = $request->toArray();
-	    if (filter_var($data['email'], FILTER_VALIDATE_EMAIL))
+	    if (self::domain() == 'fa')
         {
-            $user = User::where('email', $data['email'])->first();
-            if ($user)
-            {
-                if ($user->status >= 3) {
-                    return $this->jsonFeedback(trans('front.unique_email'),[
-                        'ok' => 0,
-                        'message' => trans('front.unique_email')
-                    ]);
-                } else {
-                    $update = array(
-                        'name_first' => $data['name_first'],
-                        'name_last' => $data['name_last'],
-                        'email' => $data['email'],
-                        'mobile' => $data['mobile'],
-                        'status' => 2,
-                        'remember_token' => md5($data['email']) . rand(10000, 99999),
-                        'customer_type' => 1,
-                        'id' => $user->id,
-                    );
-                    User::store($update);
-                    $user = User::find($user->id);
-                    //Auth::loginUsingId($user->id);
-                    EmailServiceProvider::send($user, $user->email, trans('front.verify_email'), trans('front.site_title'), 'user_register_active_link');
-                    return $this->jsonFeedback(null, [
-                        //'redirect' => url('/profile'),
-                        'ok' => 1,
-                        'message' => trans('front.please_verify_your_email_address'),
-                    ]);
-                }
-            }
-            else
-            {
-                $insert = array(
-                    'name_first' => $data['name_first'],
-                    'name_last' => $data['name_last'],
-                    'email' => $data['email'],
-                    'mobile' => $data['mobile'],
-                    'status' => 2,
-                    'remember_token' => md5($data['email']) . rand(10000, 99999),
-                    'customer_type' => 1,
-                );
-                $user = User::find(User::store($insert));
-                //Auth::loginUsingId($user->id);
-                EmailServiceProvider::send($user, $user->email, trans('front.verify_email'), trans('front.site_title'), 'user_register_active_link');
-                return $this->jsonFeedback(null, [
-                    //'redirect' => url('/profile'),
-                    'ok' => 1,
-                    'message' => trans('front.please_verify_your_email_address'),
-                ]);
-            }
+            $branch_id = 2;
         }
         else
         {
-            return $this->jsonFeedback(null, [
-                'ok' => 0,
-                'message' => trans('forms.feed.error'),
-            ]);
+            $branch_id = 14;
         }
+
+	    $agency = Category::where('parent_id', '>', 0)->where('branch_id', $branch_id)->inRandomOrder()->get();
+	    $expo = Post::selector(self::domain() . '_expo')->orderBy('published_at', 'desc')->limit(5)->get();
+	    $news = Post::selector(self::domain() . '_news')->orderBy('published_at', 'desc')->limit(5)->get();
+	    return view('front.persian.home.0', compact('slider', 'agency', 'expo', 'news'));
 	}
 
-    public function pages($slug, $title = null)
+    public function pages($lang, $slug, $title = null)
     {
         if (! $slug)
             return view('errors.404');
@@ -108,18 +57,33 @@ class FrontController extends Controller
         }
         else
         {
-            $page = Post::findBySlug($this->domain() . '-' . $slug);
+            $page = Post::findBySlug($this->domain() . '_' . $slug);
         }
 
         if (! $page)
             return view('errors.404');
 
-        return view('front.persian.page.0', compact('page'));
+        $expo = Post::selector(self::domain() . '_expo')->orderBy('published_at', 'desc')->limit(5)->get();
+        return view('front.persian.pages.0', compact('page', 'expo'));
 	}
+
+    public function about_page()
+    {
+        $page = Post::findBySlug($this->domain() . '_about');
+
+        if (! $page)
+            return view('errors.404');
+
+        return view('front.persian.about.0', compact('page'));
+    }
 
     public function contact()
     {
-        return view('front.persian.contact.0');
+        $page = Post::findBySlug($this->domain() . '_contact_us');
+
+        if (! $page)
+            return view('errors.404');
+        return view('front.persian.contact.0', compact('page'));
     }
 
     public function faq()
@@ -130,11 +94,21 @@ class FrontController extends Controller
 
     public function news()
     {
-        $news = Post::selector($this->domain() . '-news')
+        $expo = Post::selector(self::domain() . '_expo')->orderBy('published_at', 'desc')->limit(5)->get();
+        $news = Post::selector(self::domain() . '_news')
             ->where('published_at', '<=', Carbon::now()->toDateTimeString())
             ->orderBy('published_at', 'desc')
             ->paginate(20);
-        return view('front.persian.news.0', compact('news'));
+        return view('front.persian.news.0', compact('news', 'expo'));
+    }
+    public function expo()
+    {
+        $news = Post::selector(self::domain() . '_news')->orderBy('published_at', 'desc')->limit(5)->get();
+        $expo = Post::selector(self::domain() . '_expo')
+            ->where('published_at', '<=', Carbon::now()->toDateTimeString())
+            ->orderBy('published_at', 'desc')
+            ->paginate(20);
+        return view('front.persian.expo.0', compact('news', 'expo'));
     }
 
     public function products()
