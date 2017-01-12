@@ -16,7 +16,7 @@ $class = " f".$size." text-$color $class" ;
 				@pd(jDate::forge($date)->ago())
 			</text>
 			<text class="{{ $default=='relative'?'noDisplay':'' }} {{$class or ''}}">
-				@pd(jDate::forge($date)->format('j F Y [H:m]'))
+				@pd(jDate::forge($date)->format('j F Y [H:i]'))
 			</text>
 		</a>
 	</div>

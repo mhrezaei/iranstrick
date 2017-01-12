@@ -74,10 +74,12 @@
 				@include('forms.select' , [
 					'name' => 'category_id' ,
 					'value' => $model->category_id  ,
-					'options' => $model->branch()->categories ,
+					'options' => $model->branch()->catCombo() ,
 					'blank_value' => '',
 	//				'class' => 'form-required',
-					'blank_label' => trans('posts.categories.without')
+					'blank_label' => trans('posts.categories.without'),
+					'value_field' => 0,
+					'caption_field' => 1,
 				])
 			@endif
 
@@ -110,6 +112,7 @@
 
 			@include('manage.posts.editor-status')
 			@include('manage.posts.editor-slug')
+			@include('manage.posts.editor-category')
 			@include('manage.posts.editor-saves')
 			@include('manage.posts.editor-image')
 			@include('manage.posts.editor-schedule')
