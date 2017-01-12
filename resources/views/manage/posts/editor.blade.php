@@ -112,7 +112,7 @@
 
 			@include('manage.posts.editor-status')
 			@include('manage.posts.editor-slug')
-			@include('manage.posts.editor-category')
+			{{--@include('manage.posts.editor-category')--}}
 			@include('manage.posts.editor-saves')
 			@include('manage.posts.editor-image')
 			@include('manage.posts.editor-schedule')
