@@ -24,34 +24,14 @@ class UserIpDetect
                 $data = json_decode($data, true);
                 if ($data['country_code'] == 'IR')
                 {
-                    if ($this->getDomain())
-                    {
-                        $this->setData($this->getDomain());
-                    }
-                    else
-                    {
-                        $this->setData('fa');
-                    }
+                    \App::setLocale('fa');
                 }
                 else
                 {
-                    if ($this->getDomain())
-                    {
-                        $this->setData($this->getDomain());
-                    }
-                    else
-                    {
-                        $this->setData('en');
-                    }
+                    \App::setLocale('en');
                 }
             }
         }
         return $next($request);
-    }
-
-    public function setData($lang)
-    {
-        Session::put('domain', $lang);
-        App::setLocale($lang);
     }
 }

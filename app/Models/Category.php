@@ -53,6 +53,16 @@ class Category extends Model
 		return $parent ;
 	}
 
+    public function get_children()
+    {
+        return self::where('parent_id', $this->id)->orderBy('title', 'asc')->get();
+	}
+
+    public function get_branch()
+    {
+        return Branch::find($this->branch_id);
+	}
+
 
 
 }

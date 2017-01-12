@@ -22,5 +22,4 @@
     @else
         <body>
 @endif
-@include('front.persian.frame.header_navbar')
 @include('auth.frame.header_content')

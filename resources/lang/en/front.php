@@ -40,6 +40,15 @@ return [
     'persian '=> 'فارسی',
     'english' => 'English',
     'arabic' => 'العربیة',
+    'agency' => 'Agency',
+    'highlights' => 'Highlights',
+    'expo' => 'Expo',
+    'see_all' => 'See all',
+    'more' => 'Read More',
+    'fa_services' => 'Services',
+    'fa_products' => 'Products',
+    'fa_expo' => 'Expo',
+    'fa_news' => 'News',
 
 
 

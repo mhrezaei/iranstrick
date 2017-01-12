@@ -40,6 +40,17 @@ return [
     'persian'=> 'فارسی',
     'english' => 'English',
     'arabic' => 'العربیة',
+    'agency' => 'نمایندگی',
+    'highlights' => 'آخرین اخبار',
+    'expo' => 'نمایشگاه ها',
+    'see_all' => 'بیشتر',
+    'more' => 'ادامه',
+    'fa_services' => 'خدمات ما',
+    'fa_products' => 'محصولات',
+    'fa_expo' => 'نمایشگاه‌ها',
+    'fa_news' => 'خبر‌ها',
+
+
 
 
 

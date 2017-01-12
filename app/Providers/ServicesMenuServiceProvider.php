@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Traits\GlobalControllerTrait;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,19 @@ class ServicesMenuServiceProvider extends ServiceProvider
 
     public static function get()
     {
-        return Post::selector(self::domain() . '-services')->get();
+        if (self::domain() == 'fa')
+        {
+            $menu = Category::where('branch_id', 2)->where('parent_id', 0)->orderBy('title', 'asc')->get();
+        }
+        else
+        {
+            $menu = Category::where('branch_id', 14)->where('parent_id', 0)->orderBy('title', 'asc')->get();
+        }
+        return $menu;
+    }
+
+    public static function services()
+    {
+        return $menu = Post::selector(self::domain() . '_services')->orderBy('title', 'asc')->get();
     }
 }

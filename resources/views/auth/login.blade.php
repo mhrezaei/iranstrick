@@ -1,7 +1,7 @@
 @extends('auth.frame.frame')
 
 @section('page_title')
-    {{ trans('front.site_title') }} | {{ trans('front.register') }}
+    {{ Setting::get(Setting::getLocale() . '_site_title') }} | {{ trans('people.commands.login') }}
 @endsection
 @section('content')
     <div class="page-bg">
@@ -10,7 +10,6 @@
                 <section class="panel auth-content">
                     <article>
                         <h1 class="auth-title">{{ trans('people.commands.login') }}</h1>
-
                         {!! Form::open(['url' => url('/login')]) !!}
                             <div class="field icon right"> <input type="text" name="email" placeholder="{{ trans('validation.attributes.email') }}">
                                 <div class="icon-mail"></div>
@@ -38,7 +37,7 @@
                             <div class="col-sm-12" style="text-align: center;"> <a href="#" class="simple-link">{{ trans('people.commands.forget_password') }}</a> </div>
                         </div>
 
-                        <div class="more-link"> <span>{{ trans('people.commands.not_a_member') }}</span> <a href="{{ url('/register') }}">{{ trans('people.commands.register_now') }}</a> </div>
+{{--                        <div class="more-link"> <span>{{ trans('people.commands.not_a_member') }}</span> <a href="{{ url('/register') }}">{{ trans('people.commands.register_now') }}</a> </div>--}}
                         </form>
                     </article>
                 </section>
