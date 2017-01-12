@@ -139,4 +139,22 @@ class Branch extends Model
 	{
 		return self::orderBy('header_title' , 'desc')->groupBy('header_title') ;
 	}
+
+	public function catCombo()
+	{
+		$parents = Category::where('branch_id' , $this->id)->where('parent_id' , '0')->orderBy('title')->get() ;
+		$result = [] ;
+
+		foreach($parents as $parent) {
+			foreach($parent->children->get() as $child) {
+				array_push($result , [
+					$child->id ,
+					$parent->title. ' / '.$child->title
+				]);
+			}
+		}
+
+		return $result ;
+
+	}
 }
