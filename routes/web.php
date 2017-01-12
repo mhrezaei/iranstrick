@@ -173,6 +173,7 @@ Route::group(['namespace' => 'Front', 'middleware' => 'DetectLanguage'], functio
         Route::get('/about', 'FrontController@about_page');
         Route::get('/register/confirm/{hash}', 'UserController@register_confirm');
         Route::get('/pages/{slug}/{title?}', 'FrontController@pages');
+        Route::get('/products/{branch}/{category}/{brand}', 'FrontController@brands');
         Route::get('/contact', 'FrontController@contact');
         Route::get('/faq', 'FrontController@faq');
         Route::get('/news', 'FrontController@news');

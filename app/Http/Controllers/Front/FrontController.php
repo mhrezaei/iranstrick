@@ -101,6 +101,7 @@ class FrontController extends Controller
             ->paginate(20);
         return view('front.persian.news.0', compact('news', 'expo'));
     }
+
     public function expo()
     {
         $news = Post::selector(self::domain() . '_news')->orderBy('published_at', 'desc')->limit(5)->get();
@@ -109,6 +110,11 @@ class FrontController extends Controller
             ->orderBy('published_at', 'desc')
             ->paginate(20);
         return view('front.persian.expo.0', compact('news', 'expo'));
+    }
+
+    public function brands($lang, $branch, $category, $brand)
+    {
+        dd($brand);
     }
 
     public function products()
