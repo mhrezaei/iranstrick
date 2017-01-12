@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\models\Branch;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Product;
@@ -114,7 +115,20 @@ class FrontController extends Controller
 
     public function brands($lang, $branch, $category, $brand)
     {
-        dd($brand);
+        $branch = Branch::findBySlug($branch);
+        if (!$branch)
+            return redirect(url('/'));
+
+        $category = Category::where('branch_id', $branch->id)->where('slug', $category)->first();
+        if (!$category)
+            return redirect(url('/'));
+        $brand = Category::where('parent_id', $category->id)->where('slug', $brand)->first();
+        if (!$brand)
+            return redirect(url('/'));
+
+
+        return view('front.persian.brands.0', compact('branch', 'category', 'brand'));
+
     }
 
     public function products()
