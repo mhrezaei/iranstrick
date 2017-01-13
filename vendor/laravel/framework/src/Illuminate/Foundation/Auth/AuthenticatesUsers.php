@@ -39,7 +39,9 @@ trait AuthenticatesUsers
             return $this->sendLockoutResponse($request);
         }
 
-        if ($this->attemptLogin($request)) {
+        $credentials = $this->credentials($request);
+
+        if ($this->guard()->attempt($credentials, $request->has('remember'))) {
             return $this->sendLoginResponse($request);
         }
 
@@ -61,20 +63,8 @@ trait AuthenticatesUsers
     {
         $this->validate($request, [
             $this->username() => 'required', 'password' => 'required',
+            'g-recaptcha-response' => 'required', 'recaptcha', //@TODO: man rahi baraye ezafe kardan in khat bedoon dastkari core paeyda nakardam hanooz
         ]);
-    }
-
-    /**
-     * Attempt to log the user into the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    protected function attemptLogin(Request $request)
-    {
-        return $this->guard()->attempt(
-            $this->credentials($request), $request->has('remember')
-        );
     }
 
     /**
@@ -119,8 +109,8 @@ trait AuthenticatesUsers
     /**
      * Get the failed login response instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     protected function sendFailedLoginResponse(Request $request)
     {
@@ -144,7 +134,7 @@ trait AuthenticatesUsers
     /**
      * Log the user out of the application.
      *
-     * @param \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)

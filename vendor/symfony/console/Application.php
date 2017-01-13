@@ -817,13 +817,7 @@ class Application
         }
 
         if (null === $this->dispatcher) {
-            try {
-                return $command->run($input, $output);
-            } catch (\Exception $e) {
-                throw $e;
-            } catch (\Throwable $e) {
-                throw new FatalThrowableError($e);
-            }
+            return $command->run($input, $output);
         }
 
         // bind before the console.command event, so the listeners have access to input options/arguments
