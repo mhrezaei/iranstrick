@@ -81,7 +81,7 @@ class FrontController extends Controller
 
     public function contact()
     {
-        $page = Post::findBySlug($this->domain() . '-contact_us');
+        $page = Post::findBySlug($this->domain() . '-contact-us');
 
         if (! $page)
             return view('errors.404');
