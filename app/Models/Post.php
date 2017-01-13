@@ -396,6 +396,12 @@ class Post extends Model
 
 				return url('/' . SettingServiceProvider::getLocale() . "/pages/".$this->id."/".urlencode($link)) ;
 
+            case 'product_link' :
+                $link = str_replace(' ', '_', $this->title);
+                $link = str_replace('/', '_', $link);
+
+                return url('/' . SettingServiceProvider::getLocale() . "/product/".$this->id."/".urlencode($link)) ;
+
 			case 'gallery_link' :
 				$link = str_replace(' ', '_', $this->title);
 				$link = str_replace('/', '_', $link);
@@ -409,7 +415,11 @@ class Post extends Model
 				else
 					return $this->branch()->header_title;
 
-			case 'category_name' :
+            case 'category' :
+                return Category::find($this->category_id);
+
+
+            case 'category_name' :
 				if ($this->category_id > 0)
 					return Category::find($this->category_id)->title;
 				else

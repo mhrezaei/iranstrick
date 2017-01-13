@@ -2,7 +2,7 @@
 
 
 @section('page_title')
-    {{ Setting::get(Setting::getLocale() . '_site_title') }} - {{ $brand->tile }}
+    {{ Setting::get(Setting::getLocale() . '_site_title') }} - {{ $brand->title }}
 @endsection
 
 @section('content')
@@ -29,73 +29,24 @@
         <div class="about-brand">
             {{ $brand->abstract }}
         </div>
+
+        @if(sizeof($products))
         <div class="title-bar">
-            <h3>Products</h3>
+            <h3>{{ trans('front.products') }}</h3>
         </div>
         <div class="thumbs-grid row">
+            @foreach($products as $product)
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="item">
-                    <a href="">
-                        <img src="http://lorempicsum.com/up/500/500/4" alt="" class="media-object">
-                        <span class="media-title">Product Title</span>
+                    <a href="{{ $product->say('product_link') }}">
+                        <img src="{{ $product->say('featured_image') }}" alt="{{ $product->title }}" class="media-object">
+                        <span class="media-title">{{ $product->title }}</span>
                     </a>
-                    <p>Velit occaecat quis elit nisi.Commodo culpa consequat sit reprehenderit pariatur ad dolor eu non.</p>
+                    <p>{{ $product->say('abstract') }}</p>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="item">
-                    <a href="">
-                        <img src="http://lorempicsum.com/up/500/500/4" alt="" class="media-object">
-                        <span class="media-title">Product Title</span>
-                    </a>
-                    <p>Velit occaecat quis elit nisi.Commodo culpa consequat sit reprehenderit pariatur ad dolor eu non.</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="item">
-                    <a href="">
-                        <img src="http://lorempicsum.com/up/500/500/4" alt="" class="media-object">
-                        <span class="media-title">Product Title</span>
-                    </a>
-                    <p>Velit occaecat quis elit nisi.Commodo culpa consequat sit reprehenderit pariatur ad dolor eu non.</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="item">
-                    <a href="">
-                        <img src="http://lorempicsum.com/up/500/500/4" alt="" class="media-object">
-                        <span class="media-title">Product Title</span>
-                    </a>
-                    <p>Velit occaecat quis elit nisi.Commodo culpa consequat sit reprehenderit pariatur ad dolor eu non.</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="item">
-                    <a href="">
-                        <img src="http://lorempicsum.com/up/500/500/4" alt="" class="media-object">
-                        <span class="media-title">Product Title</span>
-                    </a>
-                    <p>Velit occaecat quis elit nisi.Commodo culpa consequat sit reprehenderit pariatur ad dolor eu non.</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="item">
-                    <a href="">
-                        <img src="http://lorempicsum.com/up/500/500/4" alt="" class="media-object">
-                        <span class="media-title">Product Title</span>
-                    </a>
-                    <p>Velit occaecat quis elit nisi.Commodo culpa consequat sit reprehenderit pariatur ad dolor eu non.</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="item">
-                    <a href="">
-                        <img src="http://lorempicsum.com/up/500/500/4" alt="" class="media-object">
-                        <span class="media-title">Product Title</span>
-                    </a>
-                    <p>Velit occaecat quis elit nisi.Commodo culpa consequat sit reprehenderit pariatur ad dolor eu non.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
+        @endif
     </div>
 @endsection

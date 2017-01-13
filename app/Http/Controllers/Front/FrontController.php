@@ -126,27 +126,26 @@ class FrontController extends Controller
         if (!$brand)
             return redirect(url('/'));
 
-
-        return view('front.persian.brands.0', compact('branch', 'category', 'brand'));
+        $products = Post::selector(self::domain() . '_products')
+            ->where('category_id', $brand->id)
+            ->where('published_at', '<=', Carbon::now()->toDateTimeString())
+            ->orderBy('published_at', 'desc')
+            ->get();
+        return view('front.persian.brands.0', compact('branch', 'category', 'brand', 'products'));
 
     }
 
-    public function products()
+    public function show_products($lang, $slug, $title = null)
     {
-        if (SettingServiceProvider::isLocale('en'))
-        {
-            $products = Post::selector('en-products')->get();
-        }
-        else
-        {
-            $products = Product::all();
-        }
-        return view('front.persian.products.0', compact('products'));
-    }
+        if (! $slug)
+            return view('errors.404');
 
-    public function show_products($id)
-    {
-        return redirect(url('/'));
+        $product = Post::find($slug);
+
+        if (! $product)
+            return view('errors.404');
+
+        return view('front.persian.show_product.0', compact('product'));
     }
 
 	/*

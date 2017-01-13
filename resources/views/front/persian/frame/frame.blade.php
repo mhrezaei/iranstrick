@@ -1,3 +1,7 @@
 @include('front.persian.frame.header')
 @yield('content')
-@include('front.persian.frame.footer')
+@if(Setting::getLocale() == 'fa')
+    @include('front.persian.frame.footer')
+@else
+    @include('front.english.frame.footer')
+@endif
