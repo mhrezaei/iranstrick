@@ -190,6 +190,12 @@ class ValidationServiceProvider extends ServiceProvider
 		$this->app['validator']->extend('phone', function ($attribute, $value, $parameters, $validator) {
 			return self::validatePhoneNo($attribute, $value, $parameters, $validator);
 		});
+		$this->app['validator']->extend('forbidden_chars', function ($attribute, $value, $parameters, $validator) {
+			return self::validateForbiddenChars($attribute, $value, $parameters, $validator);
+		});
+		$this->app['validator']->extend('required_chars', function ($attribute, $value, $parameters, $validator) {
+			return self::validateRequiredChars($attribute, $value, $parameters, $validator);
+		});
 		$this->app['validator']->extend('code_melli', function ($attribute, $value, $parameters, $validator) {
 			return self::validateCodeMelli($attribute, $value, $parameters, $validator);
 		});
@@ -320,6 +326,20 @@ class ValidationServiceProvider extends ServiceProvider
 
 		return true ;
 	}
+	private static function validateForbiddenChars($attribute, $value, $parameters, $validator)
+	{
+		return !str_contains($value , $parameters) ;
+	}
+	private static function validateRequiredChars($attribute, $value, $parameters, $validator)
+	{
+		foreach($parameters as $parameter) {
+			if(!str_contains($value,$parameter))
+				return false ;
+		}
+
+		return true ;
+	}
+
 	private static function validateCodeMelli($attribute, $value, $parameters, $validator)
 	{
 		if(!preg_match("/^\d{10}$/", $value)) {

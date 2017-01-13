@@ -3,6 +3,7 @@
 namespace App\models;
 
 use App\Models\Category;
+use App\Models\Post;
 use App\Traits\TahaModelTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

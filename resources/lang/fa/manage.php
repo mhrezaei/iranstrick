@@ -9,13 +9,7 @@ return [
 		'modules' => [
 			'content_management' => 'مدیریت محتوا' ,
 			'admins' => 'مدیران سایت' ,
-			'customers' => 'مشتریان' ,
-			'orders' => 'سفارش‌ها' ,
-			'payments' => "پرداخت‌ها",
-			'tickets' => 'پشتیبانی' ,
-			'chats' => 'گفت‌وگوی آنلاین' ,
-			'products' => 'محصولات' ,
-			'currencies' => 'مدیریت ارزها' ,
+			'calendar' => "سالنامه",
 		],
 
 		"permits" => [

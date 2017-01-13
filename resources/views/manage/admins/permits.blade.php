@@ -51,19 +51,6 @@
 	@endforeach
 
 	@include('forms.sep' , [
-		'label' => trans('manage.modules.tickets') ,
-	])
-
-	@foreach($opt['departments'] as $department)
-		@include('manage.admins.permits-role' , [
-			'module' => 'tickets-'.$department->slug ,
-			'permits' => 'tickets' ,
-			'label' => $department->title ,
-		])
-	@endforeach
-
-
-	@include('forms.sep' , [
 		'label' => trans('manage.modules.content_management') ,
 	])
 

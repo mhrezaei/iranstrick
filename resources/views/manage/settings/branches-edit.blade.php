@@ -28,7 +28,7 @@
 	    'name' =>	'slug',
 	    'class' =>	'form-required ltr',
 		'value' =>	$model->slug ,
-	    'hint' =>	trans('validation.hint.unique').' | '.trans('validation.hint.english-only'),
+	    'hint' =>	trans('validation.hint.unique').' | '.trans('validation.hint.english-only') . ' | '.trans('validation.hint.no_underline'),
 	])
 
 	@include('forms.input' , [
