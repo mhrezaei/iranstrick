@@ -119,10 +119,10 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 			Route::get('/{request_tab}/' , 'SettingsController@index') ;
 
 			Route::group(['prefix'=>'save'] , function() {
-				Route::post('/' , 'settingsController@save');
-				Route::post('/category' , 'settingsController@saveCategory');
-				Route::post('/handle' , 'settingsController@saveHandle');
-				Route::post('/field' , 'settingsController@saveField');
+				Route::post('/' , 'SettingsController@save');
+				Route::post('/category' , 'SettingsController@saveCategory');
+				Route::post('/handle' , 'SettingsController@saveHandle');
+				Route::post('/field' , 'SettingsController@saveField');
 			});
 
 
