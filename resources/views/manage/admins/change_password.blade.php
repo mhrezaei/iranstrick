@@ -31,15 +31,15 @@
 		'hint' => trans('people.form.password_hint')
 	])
 
-	@include('forms.group-start')
+	{{--@include('forms.group-start')--}}
 
-		@include('forms.check' , [
-			'name' => 'sms_notify',
-			'label' => trans('people.form.notify-with-sms'),
-			'value' => 1,
-		])
+		{{--@include('forms.check' , [--}}
+			{{--'name' => 'sms_notify',--}}
+			{{--'label' => trans('people.form.notify-with-sms'),--}}
+			{{--'value' => 1,--}}
+		{{--])--}}
 
-	@include('forms.group-end')
+	{{--@include('forms.group-end')--}}
 
 
 	@include('forms.group-start')

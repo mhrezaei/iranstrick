@@ -2,11 +2,13 @@
 
 namespace App\models;
 
+use App\Models\Category;
 use App\Traits\TahaModelTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+
 
 class Branch extends Model
 {
