@@ -21,7 +21,7 @@ class DetectLanguage
         }
         else
         {
-            \App::setLocale('fa');
+            \App::setLocale('en');
         }
 
         return $next($request);
