@@ -31,7 +31,7 @@ class FrontController extends Controller
 	public function index()
 	{
 	    return view('hadi.under_construction');
-	    $slider = Post::selector(self::domain() . '_home_slider')->orderBy('published_at', 'desc')->get();
+	    $slider = Post::selector(self::domain() . '-home-slider')->orderBy('published_at', 'desc')->get();
 
 	    if (self::domain() == 'fa')
         {
@@ -43,8 +43,8 @@ class FrontController extends Controller
         }
 
 	    $agency = Category::where('parent_id', '>', 0)->where('branch_id', $branch_id)->inRandomOrder()->get();
-	    $expo = Post::selector(self::domain() . '_expo')->orderBy('published_at', 'desc')->limit(5)->get();
-	    $news = Post::selector(self::domain() . '_news')->orderBy('published_at', 'desc')->limit(5)->get();
+	    $expo = Post::selector(self::domain() . '-expo')->orderBy('published_at', 'desc')->limit(5)->get();
+	    $news = Post::selector(self::domain() . '-news')->orderBy('published_at', 'desc')->limit(5)->get();
 	    return view('front.persian.home.0', compact('slider', 'agency', 'expo', 'news'));
 	}
 
@@ -59,19 +59,19 @@ class FrontController extends Controller
         }
         else
         {
-            $page = Post::findBySlug($this->domain() . '_' . $slug);
+            $page = Post::findBySlug($this->domain() . '-' . $slug);
         }
 
         if (! $page)
             return view('errors.404');
 
-        $expo = Post::selector(self::domain() . '_expo')->orderBy('published_at', 'desc')->limit(5)->get();
+        $expo = Post::selector(self::domain() . '-expo')->orderBy('published_at', 'desc')->limit(5)->get();
         return view('front.persian.pages.0', compact('page', 'expo'));
 	}
 
     public function about_page()
     {
-        $page = Post::findBySlug($this->domain() . '_about');
+        $page = Post::findBySlug($this->domain() . '-about');
 
         if (! $page)
             return view('errors.404');
@@ -81,7 +81,7 @@ class FrontController extends Controller
 
     public function contact()
     {
-        $page = Post::findBySlug($this->domain() . '_contact_us');
+        $page = Post::findBySlug($this->domain() . '-contact_us');
 
         if (! $page)
             return view('errors.404');
@@ -96,8 +96,8 @@ class FrontController extends Controller
 
     public function news()
     {
-        $expo = Post::selector(self::domain() . '_expo')->orderBy('published_at', 'desc')->limit(5)->get();
-        $news = Post::selector(self::domain() . '_news')
+        $expo = Post::selector(self::domain() . '-expo')->orderBy('published_at', 'desc')->limit(5)->get();
+        $news = Post::selector(self::domain() . '-news')
             ->where('published_at', '<=', Carbon::now()->toDateTimeString())
             ->orderBy('published_at', 'desc')
             ->paginate(20);
@@ -106,8 +106,8 @@ class FrontController extends Controller
 
     public function expo()
     {
-        $news = Post::selector(self::domain() . '_news')->orderBy('published_at', 'desc')->limit(5)->get();
-        $expo = Post::selector(self::domain() . '_expo')
+        $news = Post::selector(self::domain() . '-news')->orderBy('published_at', 'desc')->limit(5)->get();
+        $expo = Post::selector(self::domain() . '-expo')
             ->where('published_at', '<=', Carbon::now()->toDateTimeString())
             ->orderBy('published_at', 'desc')
             ->paginate(20);
@@ -127,7 +127,7 @@ class FrontController extends Controller
         if (!$brand)
             return redirect(url('/'));
 
-        $products = Post::selector(self::domain() . '_products')
+        $products = Post::selector(self::domain() . '-products')
             ->where('category_id', $brand->id)
             ->where('published_at', '<=', Carbon::now()->toDateTimeString())
             ->orderBy('published_at', 'desc')
@@ -179,17 +179,6 @@ class FrontController extends Controller
 		Auth::logout();
 		Session::flush();
 		return redirect('/login');
-	}
-
-    public function test()
-    {
-        return view('hadi.test');
-	}
-
-    public function test2()
-    {
-        $data = request()->file('avatar')->store('upload/document');
-        dd($data);
 	}
 
 }

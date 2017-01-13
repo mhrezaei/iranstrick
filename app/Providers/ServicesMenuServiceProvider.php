@@ -45,6 +45,6 @@ class ServicesMenuServiceProvider extends ServiceProvider
 
     public static function services()
     {
-        return $menu = Post::selector(self::domain() . '_services')->orderBy('title', 'asc')->get();
+        return $menu = Post::selector(self::domain() . '-services')->orderBy('title', 'asc')->get();
     }
 }
