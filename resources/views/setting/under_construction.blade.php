@@ -1,9 +1,9 @@
 <html>
 <head>
-    <title>{{ Setting::get(Setting::getLocale() . '_site_title') }}</title>
+    <title>Iran Strick</title>
     <style>
         html {
-            background: url({{ url('/' . Setting::get('suspend_site_image')) }}) no-repeat center center fixed;
+            background: url({{ url('/assets/images/update.jpg') }}) no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;

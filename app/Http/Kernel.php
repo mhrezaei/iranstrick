@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'can' => CanMiddleware::class,
         'DetectLanguage' => \App\Http\Middleware\DetectLanguage::class,
         'UserIpDetect' => \App\Http\Middleware\UserIpDetect::class,
+        'Setting' => \App\Http\Middleware\Setting::class,
     ];
 }

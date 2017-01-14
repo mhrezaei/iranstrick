@@ -161,7 +161,7 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 |        | GET|HEAD | password/reset/{token}       |                      | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest    |
  */
 
-Route::group(['namespace' => 'Front', 'middleware' => 'DetectLanguage'], function (){
+Route::group(['namespace' => 'Front', 'middleware' => ['DetectLanguage', 'Setting']], function (){
     Route::get('/', 'FrontController@index');
 
     Route::group(['prefix' => '{lang}', 'middleware' => ['UserIpDetect']], function () {

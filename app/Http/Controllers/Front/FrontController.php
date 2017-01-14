@@ -30,7 +30,6 @@ class FrontController extends Controller
 
 	public function index()
 	{
-	    return view('hadi.under_construction');
 	    $slider = Post::selector(self::domain() . '-home-slider')->orderBy('published_at', 'desc')->get();
 
 	    if (self::domain() == 'fa')
