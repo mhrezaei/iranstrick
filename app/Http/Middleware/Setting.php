@@ -17,7 +17,7 @@ class Setting
     public function handle($request, Closure $next)
     {
         $suspend_site = SettingServiceProvider::get('suspend_site');
-        if ($suspend_site)
+        if (!$suspend_site)
         {
             if (!Auth::check() or ! Auth::user()->isAdmin())
             {
