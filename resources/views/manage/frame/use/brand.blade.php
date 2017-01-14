@@ -1,7 +1,10 @@
-<a class="navbar-brand" href="{{ url ('manage') }}">
-	{{ trans('manage.page_title') }}
+<a class="navbar-brand" href="{{ url ('/') }}">
+	{{ Setting::get('fa_site_title') }}
 </a>
-
+<span class="navbar-brand">/</span>
+<a class="navbar-brand navbar-brand-sub" href="{{ url ('/manage') }}">
+	{{ trans('manage.manage') }}
+</a>
 <?php $trans = $link = 'manage'; ?>
 
 @foreach($page as $i => $p)
