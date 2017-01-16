@@ -18,8 +18,10 @@
                         <a href="{{ url('/en') }}" class="active">English</a>
                         <a href="{{ url('/fa') }}">فارسی</a>
                     </li>
-                    <p></p>
-                    <a>All rights reserved 2016</a>
+                    <p>
+                        <a>{{ Setting::get('en_site_title') }} All rights reserved 2016</a><br>
+                        <a href="http://yasnateam.com" target="_blank">Prepared by Yasna Team</a>
+                    </p>
                 </ul>
 
             </div>
@@ -70,15 +72,24 @@
             touchDrag: false,
             pullDrag: false,
             loop: true,
-            autoplay: true
+            autoplay: true,
+            autoplayHoverPause: true,
         });
         $(".highlights-slider-text").owlCarousel({
+            autoplayHoverPause: true,
             items: 1,
             mouseDrag: false,
             touchDrag: false,
             pullDrag: false,
             loop: true,
             autoplay: true,
+        });
+        var sliderTimeout;
+        $(".highlights-slider, .highlights-slider-text").hover(function(){
+            $(".highlights-slider, .highlights-slider-text").trigger('stop.owl.autoplay');
+            clearTimeout(sliderTimeout);
+        },function(){
+            sliderTimeout = setTimeout(function(){$(".highlights-slider, .highlights-slider-text").trigger('play.owl.autoplay');}, 1000);
         });
         $(".highlights-slider").on('changed.owl.carousel', function(event) {
             $(".highlights-slider-text").trigger('to.owl.carousel', event.page.index)
@@ -88,12 +99,23 @@
         });
 
         $(".links-slider").owlCarousel({
-            autoplay: false,
+            autoplay: true,
             loop: true,
             dots: false,
             autoWidth: true,
             items: 5,
             margin: 30,
+            mouseDrag: false,
+        });
+
+        $(".expo-slider").owlCarousel({
+            animateOut: 'fadeOut',
+            autoplay: true,
+            loop: true,
+            dots: false,
+            nav: true,
+            items: 1,
+            mouseDrag: false,
         });
     });
 </script>

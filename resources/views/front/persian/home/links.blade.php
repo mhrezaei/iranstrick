@@ -9,7 +9,9 @@
                 <div class="owl-carousel links-slider">
                     @foreach($agency as $agen)
                         <div class="item">
-                            <img src="{{ url('/' . $agen->image) }}" title="{{ $agen->title }}" height="120" style="width:auto">
+                            <a href="{{ url('/' . Setting::getLocale() .'/products/' . $agen->get_branch()->slug . '/' . $agen->parent->slug . '/' . $agen->slug) }}">
+                                <img src="{{ url('/' . $agen->image) }}" title="{{ $agen->title }}" height="120" style="width:auto">
+                            </a>
                         </div>
                     @endforeach
                 </div>
