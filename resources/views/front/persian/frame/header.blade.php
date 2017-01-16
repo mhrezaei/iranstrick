@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
     {!! Html::script ('assets/js/jquery-2.1.1.min.js') !!}
     {!! Html::script ('assets/js/bootstrap.min.js') !!}
+    {!! Html::script ('assets/js/owl.carousel.min.js') !!}
     <script src="https://use.fontawesome.com/42e9d0c0f0.js"></script>
     <script language="javascript">
         function base_url($ext) {

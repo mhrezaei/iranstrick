@@ -45,10 +45,10 @@ return [
     'expo' => 'Expo',
     'see_all' => 'See all',
     'more' => 'Read More',
-    'fa_services' => 'Services',
-    'fa_products' => 'Products',
-    'fa_expo' => 'Expo',
-    'fa_news' => 'News',
+    'en-services' => 'Services',
+    'en-products' => 'Products',
+    'en-expo' => 'Expo',
+    'en-news' => 'News',
 
 
 

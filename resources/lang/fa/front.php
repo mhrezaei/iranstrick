@@ -45,10 +45,10 @@ return [
     'expo' => 'نمایشگاه ها',
     'see_all' => 'بیشتر',
     'more' => 'ادامه',
-    'fa_services' => 'خدمات ما',
-    'fa_products' => 'محصولات',
-    'fa_expo' => 'نمایشگاه‌ها',
-    'fa_news' => 'خبر‌ها',
+    'fa-services' => 'خدمات ما',
+    'fa-products' => 'محصولات',
+    'fa-expo' => 'نمایشگاه‌ها',
+    'fa-news' => 'خبر‌ها',
 
 
 

@@ -1,5 +1,4 @@
 @if(sizeof($slider))
-    {!! Html::script ('assets/js/owl.carousel.min.js') !!}
     <div class="container-fluid">
         <div class="row">
             <div class="owl-carousel main-header-slider skew-slides">
