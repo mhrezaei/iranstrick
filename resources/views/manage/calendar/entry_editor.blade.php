@@ -10,6 +10,24 @@
 		['id' , $model->id] ,
 	]])
 	
+	@include("forms.input" , [
+		'name' => "title",
+		'value' => $model,
+		'required' => true,
+		'class' => "form-default",
+	])
+
+	@include("manage.frame.widgets.input-date" , [
+		'name' => "begins_at",
+		'value' => $model,
+		'required' => true,
+	])
+	@include("manage.frame.widgets.input-date" , [
+		'name' => "ends_at",
+		'value' => $model,
+		'required' => true,
+	])
+
 
 
 	{{------------------------------------------------------------------------------------------}}

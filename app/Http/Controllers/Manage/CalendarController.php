@@ -57,6 +57,10 @@ class CalendarController extends Controller
 	public function entryNew($handle_id , $year = 0 , $month = 0 , $day = 0)
 	{
 		//Preparetions...
+		$handle = Handle::find($handle_id);
+		if(!$handle)
+			return view('errors.m410');
+
 		if($day>0) {
 			$date = CalendarServiceProvider::renderRequestDate($year , $month , $day) ;
 			if(!$date)
@@ -66,7 +70,10 @@ class CalendarController extends Controller
 		//Model...
 		$model = new Entry();
 		if($day > 0)
-			$model->from = $model->to = $date ;
+			$model->begins_at = $model->ends_at = $date ;
+
+		$fields = $handle->fields ;
+
 
 		//View...
 		return view("manage.calendar.entry_editor",compact('model'));
