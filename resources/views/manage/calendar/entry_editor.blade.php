@@ -8,6 +8,7 @@
 <div class='modal-body'>
 	@include("forms.hiddens" , [ 'fields' => [
 		['id' , $model->id] ,
+		['handle_id' , $model->handle_id] ,
 	]])
 	
 	@include("forms.input" , [
@@ -28,7 +29,24 @@
 		'required' => true,
 	])
 
+	@include("forms.textarea" , [
+		'name' => "description",
+		'value' => $model,
+	])
 
+	@include("forms.sep" , [
+		'condition' => $fields->count(),
+	])
+
+	@foreach($fields as $field)
+		<!-- {{ $field->spreadMeta() }} !-->
+		@include("manage.frame.widgets.input-".$field->data_type , [
+			'label' => $field->title ,
+			'name' => 'field_'.$field->id,
+			'required' => $field->required,
+			'value' => isset($field->toArray()['field_'.$field->id]) ?  $field->toArray()['field_'.$field->id] : '',
+		])
+	@endforeach
 
 	{{------------------------------------------------------------------------------------------}}
 	@include('forms.sep')

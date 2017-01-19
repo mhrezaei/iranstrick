@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Manage\EntrySaveRequest;
+use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Entry;
 use App\Models\Handle;
@@ -76,8 +78,15 @@ class CalendarController extends Controller
 
 
 		//View...
-		return view("manage.calendar.entry_editor",compact('model'));
+		return view("manage.calendar.entry_editor",compact('model' , 'fields'));
 
+	}
+
+	public function entrySave(EntrySaveRequest $request)
+	{
+		$handle = Handle::find($request->handle_id);
+		if(!$handle)
+			return $this->jsonFeedback(trans('validation.http.Error410'));
 
 	}
 
