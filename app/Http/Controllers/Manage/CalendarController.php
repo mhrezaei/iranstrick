@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Manage\EntrySaveRequest;
+use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Entry;
 use App\Models\Handle;
@@ -57,6 +59,10 @@ class CalendarController extends Controller
 	public function entryNew($handle_id , $year = 0 , $month = 0 , $day = 0)
 	{
 		//Preparetions...
+		$handle = Handle::find($handle_id);
+		if(!$handle)
+			return view('errors.m410');
+
 		if($day>0) {
 			$date = CalendarServiceProvider::renderRequestDate($year , $month , $day) ;
 			if(!$date)
@@ -66,11 +72,21 @@ class CalendarController extends Controller
 		//Model...
 		$model = new Entry();
 		if($day > 0)
-			$model->from = $model->to = $date ;
+			$model->begins_at = $model->ends_at = $date ;
+
+		$fields = $handle->fields ;
+
 
 		//View...
-		return view("manage.calendar.entry_editor",compact('model'));
+		return view("manage.calendar.entry_editor",compact('model' , 'fields'));
 
+	}
+
+	public function entrySave(EntrySaveRequest $request)
+	{
+		$handle = Handle::find($request->handle_id);
+		if(!$handle)
+			return $this->jsonFeedback(trans('validation.http.Error410'));
 
 	}
 

@@ -403,6 +403,9 @@ return [
 				'site_credit' => "اعتبار حساب",
 				'checked_by' => "بررسی‌کننده",
 				'color_code' => "رنگ شاخص",
+
+			'begins_at' => "آغاز",
+			'ends_at' => "پایان",
 		],
 
 		"http" => [

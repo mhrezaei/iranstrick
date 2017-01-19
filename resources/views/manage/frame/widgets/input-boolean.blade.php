@@ -1,9 +1,7 @@
 @include('forms.group-start' , [
-    'label' => isset($label)? $label : trans('validation.attributes.global_value'),
+    'label' => '',
 ])
 
-@include('forms.check' , [
-    'label' => ' ',
-])
+@include('forms.check' )
 
 @include('forms.group-end')
