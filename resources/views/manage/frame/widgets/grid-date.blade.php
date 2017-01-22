@@ -8,7 +8,7 @@ $class = " f".$size." text-$color $class" ;
 ?>
 
 @if(!isset($condition) or $condition)
-	<div class="">
+	<span class="">
 		<a id="{{ $id = "spnDate".rand(10000,99999) }}" href="javascript:void(0)"  class="{{$class}}" onclick="$('#{{$id}} text').toggle()">
 			<i class="fa fa-{{$icon or 'clock-o'}} mhl5"></i>
 			{{$text or '' }}
@@ -19,6 +19,6 @@ $class = " f".$size." text-$color $class" ;
 				@pd(jDate::forge($date)->format('j F Y [H:i]'))
 			</text>
 		</a>
-	</div>
+	</span>
 
 @endif

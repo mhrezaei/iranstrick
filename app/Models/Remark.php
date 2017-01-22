@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Remark extends Model
 {
 	use TahaModelTrait , SoftDeletes ;
+	protected $guarded = ['id'];
+	public static $meta_fields = ['text'];
+	protected $casts = [
+			'meta' => 'array' ,
+	];
 
 	/*
 	|--------------------------------------------------------------------------

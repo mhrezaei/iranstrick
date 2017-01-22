@@ -10,6 +10,7 @@
 @section('section')
 	@include("manage.calendar.month_header" )
 	@include('manage.calendar.month_sheet')
+	@include('manage.calendar.month_overview')
 	@include('manage.calendar.entry_handle')
 @endsection
 

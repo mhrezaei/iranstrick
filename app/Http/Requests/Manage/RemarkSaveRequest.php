@@ -8,7 +8,7 @@ use App\Providers\ValidationServiceProvider;
 use Illuminate\Support\Facades\Auth;
 
 
-class EntrySaveRequest extends Request
+class RemarkSaveRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +21,9 @@ class EntrySaveRequest extends Request
         if($id)
             return Auth::user()->can('calendar.edit') ;
         else
-            return Auth::user()->can('calendar.create');
+            return Auth::user()->can('calendar.process');
+
+        //@TODO: Remark owner should be able to edit his own remark.
     }
 
     /**
@@ -33,11 +35,9 @@ class EntrySaveRequest extends Request
     {
         $input = $this->all();
         $id = $input['id'] ;
-        $handle_id = $input['handle_id'];
         return [
-             'title' => "required|unique:entries,title,$id,id,handle_id,$handle_id",
-             'begins_at' => 'required',
-             'ends_at' => 'required|after:begins_at',
+            'text' => "required",
+            'entry_id' => "exists:entries,id",
         ];
     }
 
@@ -45,8 +45,6 @@ class EntrySaveRequest extends Request
     {
         $value	= parent::all();
         $purified = ValidationServiceProvider::purifier($value,[
-             'begins_at' => 'date',
-             'ends_at' => 'date+1s',
         ]);
         return $purified;
 

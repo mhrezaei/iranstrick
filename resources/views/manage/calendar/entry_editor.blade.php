@@ -16,35 +16,39 @@
 		'value' => $model,
 		'required' => true,
 		'class' => "form-default",
+		'disabled' => !$model->canSave(),
 	])
 
 	@include("manage.frame.widgets.input-date" , [
 		'name' => "begins_at",
 		'value' => $model,
 		'required' => true,
+		'disabled' => !$model->canSave(),
 	])
 	@include("manage.frame.widgets.input-date" , [
 		'name' => "ends_at",
 		'value' => $model,
 		'required' => true,
+		'disabled' => !$model->canSave(),
 	])
 
 	@include("forms.textarea" , [
 		'name' => "description",
 		'value' => $model,
+		'disabled' => !$model->canSave(),
 	])
 
 	@include("forms.sep" , [
 		'condition' => $fields->count(),
 	])
-
 	@foreach($fields as $field)
 		<!-- {{ $field->spreadMeta() }} !-->
 		@include("manage.frame.widgets.input-".$field->data_type , [
 			'label' => $field->title ,
 			'name' => 'field_'.$field->id,
 			'required' => $field->required,
-			'value' => isset($field->toArray()['field_'.$field->id]) ?  $field->toArray()['field_'.$field->id] : '',
+			'value' => isset($model->toArray()['field_'.$field->id]) ?  $model->toArray()['field_'.$field->id] : '',
+			'disabled' => !$model->canSave(),
 		])
 	@endforeach
 

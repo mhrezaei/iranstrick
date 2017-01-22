@@ -16,7 +16,7 @@ class Field extends Model
 	protected $casts = [
 		'meta' => 'array' ,
 	];
-	public static $available_data_types = ['text' , 'textarea' , 'boolean' , 'date' , 'photo'] ;
+	public static $available_data_types = ['text' , 'textarea' , 'boolean' , 'date' ];//, 'photo'] ;
 
 
 	/*

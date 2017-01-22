@@ -50,11 +50,13 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 	Route::group(['prefix'=>'calendar'] , function() {
 		Route::get('/' , 'CalendarController@index');
 		Route::get('/month/{year?}/{month?}/{day?}' , 'CalendarController@index');
-
 		Route::get('entry/new/{handle_id}/{year?}/{month?}/{day?}' , 'CalendarController@entryNew');
+		Route::get('entry/view/{entry_id}' , 'CalendarController@entryView');
+		Route::get('entry/edit/{entry_id}' , 'CalendarController@entryEdit');
+
 		Route::group(['prefix'=>'save'] , function() {
 			Route::post('/entry' , 'CalendarController@entrySave');
-			Route::post('/entry_first_step' , 'CalendarController@entryFirstStep');
+			Route::post('/remark' , 'CalendarController@remarkSave');
 		});
 	});
 

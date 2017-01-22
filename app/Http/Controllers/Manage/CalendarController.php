@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manage\EntrySaveRequest;
+use App\Http\Requests\Manage\RemarkSaveRequest;
+use App\Models\Remark;
 use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Entry;
@@ -50,9 +52,13 @@ class CalendarController extends Controller
 
 		//Model...
 		$handles = Handle::selector()->orderBy('title')->get() ;
+		$entries = Entry::selector([
+			'begins_before' => jDateTime::createCarbonFromFormat("Y/n/j" , $para['year'].'/'.$para['month'].'/31') ,
+			'ends_after' => jDateTime::createCarbonFromFormat("Y/n/j" , $para['year'].'/'.$para['month'].'/1'),
+		])->get() ;
 
 		//View...
-		return view("manage.calendar.month",compact('page' , 'date' , 'para' , 'month' , 'handles'));
+		return view("manage.calendar.month",compact('page' , 'date' , 'para' , 'month' , 'handles' , 'entries'));
 
 	}
 
@@ -71,22 +77,90 @@ class CalendarController extends Controller
 
 		//Model...
 		$model = new Entry();
+		$model->handle_id = $handle->id ;
 		if($day > 0)
 			$model->begins_at = $model->ends_at = $date ;
 
 		$fields = $handle->fields ;
-
 
 		//View...
 		return view("manage.calendar.entry_editor",compact('model' , 'fields'));
 
 	}
 
+	public function entryEdit($entry_id)
+	{
+		//Preparetions...
+		$model = Entry::find($entry_id) ;
+		if(!$model)
+			return view('errors.m410');
+
+		$model->spreadMeta();
+//		$model->readonly = true ;
+
+//		return view('templates.say' , ['array'=>$model->toArray()]);
+
+		$fields = $model->handle->fields ;
+
+		//Showing...
+		return view("manage.calendar.entry_editor",compact('model' , 'fields'));
+
+	}
+
+	public function entryView($entry_id)
+	{
+		//Preparetions...
+		$model = Entry::find($entry_id) ;
+		if(!$model)
+			return view('errors.m410');
+
+		$model->spreadMeta() ;
+		$model->handle->spreadMeta() ;
+
+		//Showing...
+		return view("manage.calendar.entry_view",compact('model'));
+
+
+	}
+
 	public function entrySave(EntrySaveRequest $request)
 	{
+		//Validation...
 		$handle = Handle::find($request->handle_id);
 		if(!$handle)
 			return $this->jsonFeedback(trans('validation.http.Error410'));
+
+		$fields = $handle->fields ;
+		foreach($fields as $field) {
+			$field->spreadMeta() ;
+			if($field->required and !$request->toArray()['field_'.$field->id]) 
+				return $this->jsonFeedback( trans('validation.required' , [
+					'attribute' => $field->title ,
+				]));
+				
+		}
+
+		//Save...
+		//Save and Return...
+		$saved = Entry::store($request);
+
+		return $this->jsonAjaxSaveFeedback($saved , [
+				'success_refresh' => true,
+//				'success_callback' => "rowUpdate('tblCurrencies','$request->id')",
+		]);
+
+
+
+	}
+
+	public function remarkSave(RemarkSaveRequest $request)
+	{
+		//Save and Return...
+		$saved = Remark::store($request);
+
+		return $this->jsonAjaxSaveFeedback($saved , [
+			'success_callback' => "remarksRefresh('$request->entry_id')",
+		]);
 
 	}
 

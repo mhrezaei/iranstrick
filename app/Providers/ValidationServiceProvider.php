@@ -156,8 +156,12 @@ class ValidationServiceProvider extends ServiceProvider
 
 			case 'date' :
 				//$data = Carbon::createFromTimestamp($data)->toDateTimeString();
-				$carbon = new Carbon($data) ;
-				$data = $carbon->toDateString();
+//				$carbon = new Carbon($data) ;
+//				$data = $carbon->toDateString();
+				break ;
+
+			case 'date+1s' :
+				$data .= ' 00:00:01' ;
 				break ;
 
 			case 'time' :

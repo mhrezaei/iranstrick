@@ -27,7 +27,7 @@ return [
 
 		"accepted"         => ":attribute باید پذیرفته شده باشد.",
 		"active_url"       => "نشانی :attribute معتبر نیست",
-		"after"            => ":attribute منطقی نیست." , ":attribute باید تاریخی بعد از :date باشد.",
+		"after"            => "تاریخ «:attribute» منطقی نیست." , ":attribute باید تاریخی بعد از :date باشد.",
 		"alpha"            => ":attribute باید شامل حروف الفبا باشد.",
 		"alpha_dash"       => ":attribute فقط می‌تواند شامل حروف الفبا و عدد و خط (underline یا dash) باشد.",
 		"alpha_num"        => ":attribute باید شامل حروف الفبا و عدد باشد.",

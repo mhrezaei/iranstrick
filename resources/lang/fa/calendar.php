@@ -14,9 +14,12 @@ return [
 	'handle_new' => "دستگیره جدید",
 	'handle_edit' => "ویرایش دستگیره",
 	'handle_delete_alert_entries' => "این دستگیره به :count رویداد اختصاص یافته و حذف، رویدادها را «پادرهوا» خواهد ساخت.",
+	'overview' => "در یک نگاه",
 	
 	'remarks' => "یادداشت‌ها",
 	'remark' => "یادداشت",
+	'new_remark_placeholder' => "یادداشت خود را اینجا بنویسید و ثبت کنید...",
+	'save_remark' => "ثبت یادداشت",
 
 	'fields' => "ورودی‌ها",
 	'field' => "ورودی",
