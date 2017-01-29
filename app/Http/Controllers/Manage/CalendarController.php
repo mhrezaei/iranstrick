@@ -55,10 +55,25 @@ class CalendarController extends Controller
 		$entries = Entry::selector([
 			'begins_before' => jDateTime::createCarbonFromFormat("Y/n/j" , $para['year'].'/'.$para['month'].'/31') ,
 			'ends_after' => jDateTime::createCarbonFromFormat("Y/n/j" , $para['year'].'/'.$para['month'].'/1'),
-		])->get() ;
+		])->orderBy('begins_at')->get() ;
+
+		//Json...
+		$entries_table = [] ;
+		foreach($entries as $entry) {
+			$entry->handle->spreadMeta();
+			array_push($entries_table , [
+				'id' => $entry->id,
+				'title' => $entry->title,
+				'color_code' => $entry->handle->color_code,
+				'begins_at' => AppServiceProvider::pd(jDate::forge($entry->begins_at)->format('j F Y')),
+				'ends_at' => AppServiceProvider::pd(jDate::forge($entry->ends_at)->format('j F Y')),
+				'days' => $entry->getDays($para),
+			]);
+		}
+		$entries_json = json_encode($entries_table) ;
 
 		//View...
-		return view("manage.calendar.month",compact('page' , 'date' , 'para' , 'month' , 'handles' , 'entries'));
+		return view("manage.calendar.month",compact('page' , 'date' , 'para' , 'month' , 'handles' , 'entries_json'));
 
 	}
 
@@ -130,6 +145,8 @@ class CalendarController extends Controller
 		if(!$handle)
 			return $this->jsonFeedback(trans('validation.http.Error410'));
 
+
+
 		$fields = $handle->fields ;
 		foreach($fields as $field) {
 			$field->spreadMeta() ;
@@ -139,8 +156,8 @@ class CalendarController extends Controller
 				]));
 				
 		}
+		
 
-		//Save...
 		//Save and Return...
 		$saved = Entry::store($request);
 

@@ -35,7 +35,8 @@ class EntrySaveRequest extends Request
         $id = $input['id'] ;
         $handle_id = $input['handle_id'];
         return [
-             'title' => "required|unique:entries,title,$id,id,handle_id,$handle_id",
+//             'title' => "required|unique:entries,title,$id,id,handle_id,$handle_id",
+             'title' => "required",
              'begins_at' => 'required',
              'ends_at' => 'required|after:begins_at',
         ];

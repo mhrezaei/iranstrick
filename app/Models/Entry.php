@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\TahaModelTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +62,7 @@ class Entry extends Model
 	{
 		return $this->handle->fields ;
 	}
+
 
 
 	/*
@@ -127,5 +129,19 @@ class Entry extends Model
 	public function canRemark()
 	{
 		return Auth::user()->can('calendar.process');
+	}
+
+	public function getDays($current_day)
+	{
+		$pointer = $this->begins_at ;
+		$days = [] ;
+		while($pointer <= $this->ends_at) {
+			$jalali = explode('-', jDate::forge($pointer)->format('Y-m-j')) ;
+			if($jalali[0] == $current_day['year'] and $jalali[1] == $current_day['month'])
+			array_push($days , $jalali[2]);
+			$pointer->addDays(1);
+		}
+
+		return $days ;
 	}
 }

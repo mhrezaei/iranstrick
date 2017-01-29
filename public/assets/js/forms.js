@@ -115,6 +115,11 @@ function forms_listener() {
 	setTimeout("forms_listener()", 5);
 }
 
+function forms_log($thing)
+{
+	console.log($thing);
+}
+
 function forms_validate(formData, jqForm, options) {
 
 	//Variables...
