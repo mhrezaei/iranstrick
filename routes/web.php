@@ -53,6 +53,7 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 		Route::get('entry/new/{handle_id}/{year?}/{month?}/{day?}' , 'CalendarController@entryNew');
 		Route::get('entry/view/{entry_id}' , 'CalendarController@entryView');
 		Route::get('entry/edit/{entry_id}' , 'CalendarController@entryEdit');
+		Route::get('entry/remarksRefresh/{entry_id}' , 'CalendarController@remarksRefresh');
 
 		Route::group(['prefix'=>'save'] , function() {
 			Route::post('/entry' , 'CalendarController@entrySave');

@@ -159,8 +159,20 @@ class CalendarController extends Controller
 		$saved = Remark::store($request);
 
 		return $this->jsonAjaxSaveFeedback($saved , [
+			'success_modalClose' => '0',
 			'success_callback' => "remarksRefresh('$request->entry_id')",
 		]);
+
+	}
+
+	public function remarksRefresh($entry_id)
+	{
+		//Model...
+		$model = Entry::find($entry_id);
+		if(!$model) return view('errors.m410');
+
+		//View...
+		return view("manage.calendar.entry_remarks",compact('model'));
 
 	}
 

@@ -59,7 +59,7 @@
 		</div>
 	@endforeach
 
-	<div class="remarks">
+	<div id="divRemarks" class="remarks">
 		@include('manage.calendar.entry_remarks')
 	</div>
 </div>
@@ -83,7 +83,7 @@
 		'label' => trans('forms.button.ok'),
 		'shape' => "primary",
 		'link-' => '$(".modal").modal("hide")',
-		'link' => "remarksRefresh($model->id)",
+		'link' => '$(".modal").modal("hide")',
 	])
 
 </div>

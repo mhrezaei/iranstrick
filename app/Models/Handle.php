@@ -15,7 +15,7 @@ class Handle extends Model
 		'meta' => 'array' ,
 		'fields' => 'array' ,
 	];
-	public static $available_color_codes = ['red','orange','purple','green','teal','blue','gray','dark','brown','white'] ;
+	public static $available_color_codes = ['red','orange','purple','green','teal','blue','gray','dark','brown'];//,'white'] ;
 
 	/*
 	|--------------------------------------------------------------------------

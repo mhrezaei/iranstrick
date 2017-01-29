@@ -14,13 +14,13 @@ function handleSelector($year , $month , $day)
 
 function remarksRefresh($entry_id)
 {
+	$("#divRemarks").addClass('loading') ;
 	$.ajax({
-		url: url('m0anage/calendar/entry/remarksRefresh') ,
+		url: url('manage/calendar/entry/remarksRefresh/'+$entry_id) ,
 		cache: false ,
 	})
 	.done(function (html) {
-		$($row_selector).html(html);
-		$($row_selector).removeClass('loading') ;
-		$($row_selector + ' .-rowCounter ').html($counter) ;
+		$("#divRemarks").html(html);
+		$("#divRemarks").removeClass('loading') ;
 	});
 }

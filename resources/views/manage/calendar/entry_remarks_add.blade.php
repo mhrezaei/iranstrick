@@ -10,8 +10,9 @@
 	'required' => "true",
 	'placeholder' => trans('calendar.new_remark_placeholder'),
 	'in_form' => false,
-	'rows' => 3,
+	'rows' => 1,
 	'condition' => $model->canRemark(),
+	'class' => "form-autoSize",
 ])
 
 @include("forms.button" , [

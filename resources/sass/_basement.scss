@@ -172,8 +172,28 @@ div.mce-fullscreen {
 | 
 */
 
-.text-grey {
+.text-gray {
   color: gray;
+}
+
+.text-green {
+  color: #8bba12;
+}
+
+.text-red {
+  color: red;
+}
+
+.text-teal{
+  color: #23999d;
+}
+
+.text-blue {
+  color: blue;
+}
+
+.text-brown {
+  color: #4F3111 ;
 }
 
 .text-black {
@@ -287,7 +307,7 @@ div.mce-fullscreen {
 .bg-teal {
   background: #23999d; }
 .bg-blue {
-  background: #00729C; }
+  background: blue; }
 .bg-purple {
   background: #9013FE; }
 .bg-brown {
