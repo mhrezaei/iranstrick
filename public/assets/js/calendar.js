@@ -2,6 +2,7 @@
  * Created by jafar on 1/9/17.
  * Just used for calendar service
  */
+datepicker_listener() ;
 
 function handleSelector($year , $month , $day)
 {
@@ -45,3 +46,17 @@ function getHandle($entry)
 	var $object = '<i class="fa fa-'+$entry.icon+' handle text-' + $entry.color_code + '" title=" '+$entry.title+' " onclick="'+$modal+'"></i>';
 	return $object ;
 }
+
+function datepicker_listener()
+{
+	var selector = "#txtGoto" ;
+
+	if($(selector).hasClass('valid')) {
+		forms_log($(selector).val()) ;
+		window.location = url('manage/calendar/month/'+$(selector).val());
+	}
+	else {
+		setTimeout("datepicker_listener()", 3);
+	}
+}
+

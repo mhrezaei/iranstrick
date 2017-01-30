@@ -22,12 +22,8 @@
 
 
 	<div class="tags ph10">
-		<span class="handle text-{{$model->handle->color_code}} f14" >
-			<i class="fa fa-{{$model->handle->icon}}"></i>
-			{{ $model->handle->title }}
-		</span>
-		<span class="date text-grat" >
-			@pd(jDate::forodel->begins_at)->format('j F Y'))
+		<span class="date text-black bold" >
+			@pd(jDate::forge($model->begins_at)->format('j F Y'))
 			@if($model->begins_at != $model->ends_at)
 				&nbsp;
 				{{ trans('global.to') }}
@@ -36,8 +32,12 @@
 			@endif
 
 		</span>
+		<span class="handle text-{{$model->handle->color_code}} f14 mh20" >
+			<i class="fa fa-{{$model->handle->icon}}"></i>
+			{{ $model->handle->title }}
+		</span>
 	</div>
-	<div class="text text-justify p10">
+	<div class="text text-justify p10 ">
 		{{ $model->description }}
 	</div>
 

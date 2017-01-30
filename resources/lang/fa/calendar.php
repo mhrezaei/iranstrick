@@ -3,6 +3,9 @@ return [
 	'title' => "سالنامه",
 	'month_view' => "ماه‌نما",
 	'go_to' => 'برو به' ,
+	'next_month' => "ماه بعد",
+	'previous_month' => "ماه قبل",
+	'go_today' => "امروز",
 
 	'entries' => "رویدادها",
 	'entry' => "رویداد",

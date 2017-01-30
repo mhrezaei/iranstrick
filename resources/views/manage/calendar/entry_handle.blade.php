@@ -12,9 +12,9 @@
 		<a class="handleLink" href="javascript:void(0)" data-content="{{$handle->id}}" >
 			<div class="row w100" data-content="{{$handle->spreadMeta()}}">
 				<div class="col-lg-2 col-md-3 col-sm-4 p5">
-					<div class=" img-circle bg-{{$handle->color_code}} colorCode" style="width: 20px;height: 20px;border: 1px solid black"></div>
+					<i class="fa fa-{{$handle->icon}} text-{{$handle->color_code}}"></i>
 				</div>
-				<div class="col-lg-10 col-md-9 col-sm-8 p5">
+				<div class="col-lg-10 col-md-9 col-sm-8 p5 text-{{$handle->color_code}}">
 					{{ $handle->title }}
 				</div>
 			</div>

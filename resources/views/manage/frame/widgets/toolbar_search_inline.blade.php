@@ -17,7 +17,7 @@
 //		'onsubmit' => "return search('$id')"
 	]) !!}
 
-	<input name="{{ $field_name or 'keyword' }}" value="{{$value or ''}}" class="form-control" placeholder="{{$label}}...">
+	<input id="{{$input_id or ''}}" name="{{ $field_name or 'keyword' }}" value="{{$value or ''}}" class="form-control {{$class or ''}}" placeholder="{{$label}}...">
 	<input name="searched" type="hidden" value="1">
 	{{--<button type="submit" class="btn btn-{{$type or 'default'}}">--}}
 		{{--<i class="fa fa-search"></i>--}}

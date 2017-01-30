@@ -10,7 +10,19 @@
 		['id' , $model->id] ,
 		['handle_id' , $model->handle_id] ,
 	]])
-	
+
+	@include("forms.group-start" , [
+		'label' => trans('calendar.handle'),
+		'fake' => $model->handle->spreadMeta(),
+	])
+
+			<div class="f14 mv5 text-{{$model->handle->color_code}}">
+				<i class="fa fa-{{ $model->handle->icon }}"></i>
+				{{ $model->handle->title}}
+			</div>
+
+	@include("forms.group-end")
+
 	@include("forms.input" , [
 		'name' => "title",
 		'value' => $model,

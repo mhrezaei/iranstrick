@@ -7,10 +7,17 @@
 
 @section('page_title' , trans('manage.page_title'))
 
+@include("manage.frame.widgets.blank" , [
+	'1' => $entries = json_decode($entries_json),
+])
+
+
 @section('section')
 	@include("manage.calendar.month_header" )
 	@include('manage.calendar.month_sheet')
-	@include('manage.calendar.month_overview')
+	@if(sizeof($entries))
+		@include('manage.calendar.month_overview')
+	@endif
 	@include('manage.calendar.entry_handle')
 @endsection
 
