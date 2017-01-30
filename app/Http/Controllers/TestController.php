@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\models\Branch;
 use App\Models\Entry;
+use App\Models\Handle;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Post;
@@ -21,15 +22,7 @@ class TestController extends Controller
 {
 	public function index()
 	{
-		$entry = Entry::find(1);
-		$begins_at = $entry->begins_at ;
-		$ends_at = $entry->ends_at ;
-
-		return view('templates.say' , ['array'=>$entry->getDays([1395,11,10])]);
-		 ;
-
-//		return view('templates.say' , ['array'=>$ends_at - $begins_at]);
-
+		Handle::makeMiscRecord();
 
 	}
 

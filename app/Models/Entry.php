@@ -31,7 +31,7 @@ class Entry extends Model
 	*/
 	public function handle()
 	{
-		return $this->belongsTo('App\Models\Handle');
+		return $this->belongsTo('App\Models\Handle')->withTrashed();;
 
 	}
 
@@ -124,6 +124,14 @@ class Entry extends Model
 
 		return Auth::user()->can('calendar.edit') ;
 
+	}
+
+	public function canDelete()
+	{
+		if(!$this->id or $this->readonly)
+			return false;
+
+		return Auth::user()->can('calendar.delete');
 	}
 
 	public function canRemark()

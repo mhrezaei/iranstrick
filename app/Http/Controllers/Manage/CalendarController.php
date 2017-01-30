@@ -69,6 +69,7 @@ class CalendarController extends Controller
 				'begins_at' => AppServiceProvider::pd(jDate::forge($entry->begins_at)->format('j F Y')),
 				'ends_at' => AppServiceProvider::pd(jDate::forge($entry->ends_at)->format('j F Y')),
 				'days' => $entry->getDays($para),
+				'handle_trashed' => $entry->handle->trashed(),
 			]);
 		}
 		$entries_json = json_encode($entries_table) ;
@@ -141,6 +142,18 @@ class CalendarController extends Controller
 
 	public function entrySave(EntrySaveRequest $request)
 	{
+		//If Delete...
+		if($request->_submit == 'delete') {
+			$model = Entry::find($request->id) ;
+			if(!$model)
+				return $this->jsonFeedback();
+
+			return $this->jsonAjaxSaveFeedback($model->delete() , [
+					'success_refresh' => true,
+			]);
+
+		}
+
 		//Validation...
 		$handle = Handle::find($request->handle_id);
 		if(!$handle)

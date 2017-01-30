@@ -253,11 +253,7 @@ class SettingsController extends Controller
 		//If Delete...
 		if($request->_submit == 'delete') {
 			$model = Handle::find($request->id) ;
-			if(!$model or $model->entries()->count() > 0)
-				return $this->jsonFeedback();
-
-			$model->entries()->update(['handle_id' => '0']);
-			return $this->jsonAjaxSaveFeedback($model->forceDelete() , [
+			return $this->jsonAjaxSaveFeedback($model->delete() , [
 					'success_refresh' => true,
 			]);
 
@@ -269,6 +265,7 @@ class SettingsController extends Controller
 	{
 		//If Save...
 		if($request->_submit == 'save') {
+
 			//Look for soft-deleted fields...
 			if($request->id == 0) {
 				$ex_field = Field::where('title' , $request->title)->where('handle_id',$request->handle_id)->withTrashed()->first();

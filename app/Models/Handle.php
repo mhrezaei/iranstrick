@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Traits\TahaModelTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Handle extends Model
 {
-	use TahaModelTrait  ;
+	use TahaModelTrait , SoftDeletes  ;
 
 	protected $guarded = ['id'];
 	public static $meta_fields = ['color_code' , 'icon'];
@@ -15,7 +16,7 @@ class Handle extends Model
 		'meta' => 'array' ,
 		'fields' => 'array' ,
 	];
-	public static $available_color_codes = ['blue','red','orange','purple','green','teal','gray','dark','brown'];//,'white'] ;
+	public static $available_color_codes = ['blue','red','orange','purple','green','teal','dark','brown'  , 'gray'];
 	public static $available_icons = ['bookmark' , 'star', 'car' , 'cutlery' , 'male' , 'female' , 'plane' , 'book' , 'envelope' , 'film'  , 'file-text-o' , 'save' ,
 			'music' , 'flag' , 'tree' , 'hourglass-half' , 'paper-plane-o' , 'square' , 'circle' , 'dot-circle-o' , 'check-square-o' , 'tag' , 'credit-card' , 'money'] ;
 
@@ -87,4 +88,5 @@ class Handle extends Model
 		}
 
 	}
+
 }

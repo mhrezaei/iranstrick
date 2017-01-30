@@ -1,7 +1,7 @@
 <div class="row" aria-atomic="{{ $on_click = "masterModal(url('manage/calendar/entry/view/$entry->id'))" }}">
 	<div class="col-md-1">
 		<a href="javascript:void(0)" onclick="{{$on_click}}" class="text-{{$entry->color_code}}">
-			<i class="fa fa-{{$entry->icon}} f14 text-{{$entry->color_code}}"></i>
+			<i class="fa fa-{{$entry->icon}} f14 text-{{$entry->color_code}} {{$entry->handle_trashed? 'deleted-content' : ''}}"></i>
 		</a>
 	</div>
 	<div class="col-md-3 text-{{$entry->color_code}}">

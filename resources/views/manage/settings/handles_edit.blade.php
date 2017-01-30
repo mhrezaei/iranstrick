@@ -13,7 +13,7 @@
 	    'name' =>	'title',
 	    'value' =>	$model->title,
 	    'class' => 'form-required form-default' ,
-	    'hint' =>	trans('validation.hint.unique').' | '.trans('validation.hint.persian-only'),
+//	    'hint' =>	trans('validation.hint.unique').' | '.trans('validation.hint.persian-only'),
 	])
 
 	@include("forms.icon" , [

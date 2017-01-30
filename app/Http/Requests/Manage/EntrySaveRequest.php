@@ -32,14 +32,20 @@ class EntrySaveRequest extends Request
     public function rules()
     {
         $input = $this->all();
-        $id = $input['id'] ;
-        $handle_id = $input['handle_id'];
-        return [
-//             'title' => "required|unique:entries,title,$id,id,handle_id,$handle_id",
-             'title' => "required",
-             'begins_at' => 'required',
-             'ends_at' => 'required|after:begins_at',
-        ];
+        if($input['_submit']=='delete') {
+            return [] ;
+        }
+        else {
+            $id = $input['id'] ;
+            $handle_id = $input['handle_id'];
+            return [
+                //             'title' => "required|unique:entries,title,$id,id,handle_id,$handle_id",
+                 'title' => "required",
+                 'begins_at' => 'required',
+                 'ends_at' => 'required|after:begins_at',
+            ];
+
+        }
     }
 
     public function all()

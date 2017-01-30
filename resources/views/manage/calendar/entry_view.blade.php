@@ -22,7 +22,7 @@
 
 
 	<div class="tags ph10">
-		<span class="date text-black bold" >
+		<span class="date text-black f18" >
 			@pd(jDate::forge($model->begins_at)->format('j F Y'))
 			@if($model->begins_at != $model->ends_at)
 				&nbsp;
@@ -32,7 +32,7 @@
 			@endif
 
 		</span>
-		<span class="handle text-{{$model->handle->color_code}} f14 mh20" >
+		<span class="handle text-{{$model->handle->color_code}} f14 mh20 {{$model->handle->trashed()? 'deleted-content' : ''}}" >
 			<i class="fa fa-{{$model->handle->icon}}"></i>
 			{{ $model->handle->title }}
 		</span>
