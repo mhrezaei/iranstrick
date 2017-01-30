@@ -90,6 +90,10 @@ div.mce-fullscreen {
   font-weight: 100;
 }
 
+.bordered {
+  border: 1px solid;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Loops
@@ -105,7 +109,7 @@ div.mce-fullscreen {
   }
 }
 
-@for $i from 5 to 19 {
+@for $i from 5 to 29 {
   .f#{$i} {
     font-size: 1px * $i;
     @if($i<10) {

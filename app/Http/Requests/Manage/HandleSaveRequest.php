@@ -32,6 +32,7 @@ class HandleSaveRequest extends Request
             return [
                  'title' => 'required|unique:handles,title,'.$input['id'].',id',
                  'color_code' => 'required|in:'.implode(',',Handle::$available_color_codes) ,
+                 'icon' => 'required|in:'.implode(',',Handle::$available_icons) ,
             ];
         }
         else {

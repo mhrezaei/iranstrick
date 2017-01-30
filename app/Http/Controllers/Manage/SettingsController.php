@@ -119,7 +119,9 @@ class SettingsController extends Controller
 		}
 		else {
 			$model = new Handle();
-			$model->color_code = 'white' ;
+			$model->color_code = Handle::$available_color_codes[0];
+			$model->icon = Handle::$available_icons[0] ;
+
 		}
 
 		//View...

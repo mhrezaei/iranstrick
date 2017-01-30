@@ -65,6 +65,7 @@ class CalendarController extends Controller
 				'id' => $entry->id,
 				'title' => $entry->title,
 				'color_code' => $entry->handle->color_code,
+				'icon' => $entry->handle->icon ,
 				'begins_at' => AppServiceProvider::pd(jDate::forge($entry->begins_at)->format('j F Y')),
 				'ends_at' => AppServiceProvider::pd(jDate::forge($entry->ends_at)->format('j F Y')),
 				'days' => $entry->getDays($para),

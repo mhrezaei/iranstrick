@@ -22,11 +22,12 @@
 
 
 	<div class="tags ph10">
-		<span class="handle badge bg-{{$model->handle->color_code}}">
+		<span class="handle text-{{$model->handle->color_code}} f14" >
+			<i class="fa fa-{{$model->handle->icon}}"></i>
 			{{ $model->handle->title }}
 		</span>
-		<span class="date badge badge-info">
-			@pd(jDate::forge($model->begins_at)->format('j F Y'))
+		<span class="date text-grat" >
+			@pd(jDate::forodel->begins_at)->format('j F Y'))
 			@if($model->begins_at != $model->ends_at)
 				&nbsp;
 				{{ trans('global.to') }}

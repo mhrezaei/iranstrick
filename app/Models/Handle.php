@@ -10,12 +10,15 @@ class Handle extends Model
 	use TahaModelTrait  ;
 
 	protected $guarded = ['id'];
-	public static $meta_fields = ['color_code'];
+	public static $meta_fields = ['color_code' , 'icon'];
 	protected $casts = [
 		'meta' => 'array' ,
 		'fields' => 'array' ,
 	];
-	public static $available_color_codes = ['red','orange','purple','green','teal','blue','gray','dark','brown'];//,'white'] ;
+	public static $available_color_codes = ['blue','red','orange','purple','green','teal','gray','dark','brown'];//,'white'] ;
+	public static $available_icons = ['bookmark' , 'star', 'car' , 'cutlery' , 'male' , 'female' , 'plane' , 'book' , 'envelope' , 'film'  , 'file-text-o' , 'save' ,
+			'music' , 'flag' , 'tree' , 'hourglass-half' , 'paper-plane-o' , 'square' , 'circle' , 'dot-circle-o' , 'check-square-o' , 'tag' , 'credit-card' , 'money'] ;
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -45,6 +48,12 @@ class Handle extends Model
 	{
 		return self::$available_color_codes ;
 	}
+
+	public function getAvailableIconsAttribute()
+	{
+		return self::$available_icons ;
+	}
+
 
 
 	/*

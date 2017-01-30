@@ -42,6 +42,6 @@ function getHandle($entry)
 {
 	var $url = url()+ "manage/calendar/entry/view/" + $entry.id ;
 	var $modal = "masterModal('"+$url+"')";
-	var $object = '<i class="fa fa-bookmark handle text-' + $entry.color_code + '" title=" '+$entry.title+' " onclick="'+$modal+'"></i>';
+	var $object = '<i class="fa fa-'+$entry.icon+' handle text-' + $entry.color_code + '" title=" '+$entry.title+' " onclick="'+$modal+'"></i>';
 	return $object ;
 }
