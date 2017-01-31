@@ -41,7 +41,7 @@ return [
     'english' => 'English',
     'arabic' => 'العربیة',
     'agency' => 'Agency',
-    'highlights' => 'Highlights',
+    'highlights' => 'Last News',
     'expo' => 'Expo',
     'see_all' => 'See all',
     'more' => 'Read More',

@@ -38,11 +38,11 @@
     $(document).ready(function () {
         $(".main-header-slider").owlCarousel({
             autoplay: true,
-            autoplaySpeed: 1000,
+            autoplaySpeed: 500,
             items: 1,
-            autoplayHoverPause: true,
+            autoplayHoverPause: false,
             dots: false,
-            goToFirstSpeed: 2000,
+            goToFirstSpeed: 1000,
             loop: true,
             nav: true,
             responsive:{
