@@ -79,6 +79,8 @@
             autoplay: true,
             autoplayHoverPause: true,
             nav: true,
+            animateOut: 'fadeOut',
+            dots: false,
         });
         $(".highlights-slider-text").owlCarousel({
             autoplayHoverPause: true,

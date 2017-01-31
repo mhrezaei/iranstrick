@@ -34,11 +34,11 @@ class ServicesMenuServiceProvider extends ServiceProvider
     {
         if (self::domain() == 'fa')
         {
-            $menu = Category::where('branch_id', 2)->where('parent_id', 0)->orderBy('title', 'asc')->get();
+            $menu = Category::where('branch_id', 2)->where('parent_id', 0)->orderBy('id', 'asc')->get();
         }
         else
         {
-            $menu = Category::where('branch_id', 14)->where('parent_id', 0)->orderBy('title', 'asc')->get();
+            $menu = Category::where('branch_id', 14)->where('parent_id', 0)->orderBy('id', 'asc')->get();
         }
         return $menu;
     }
