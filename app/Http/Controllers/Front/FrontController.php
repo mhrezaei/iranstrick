@@ -42,6 +42,7 @@ class FrontController extends Controller
         }
 
 	    $agency = Category::where('parent_id', '>', 0)->where('branch_id', $branch_id)->inRandomOrder()->get();
+//        dd($agency->toArray());
 	    $expo = Post::selector(self::domain() . '-expo')->orderBy('published_at', 'desc')->limit(5)->get();
 	    $news = Post::selector(self::domain() . '-news')->orderBy('published_at', 'desc')->limit(5)->get();
 	    return view('front.persian.home.0', compact('slider', 'agency', 'expo', 'news'));

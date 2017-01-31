@@ -78,6 +78,7 @@
             loop: true,
             autoplay: true,
             autoplayHoverPause: true,
+            nav: true,
         });
         $(".highlights-slider-text").owlCarousel({
             autoplayHoverPause: true,
