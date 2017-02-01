@@ -11,6 +11,7 @@ return [
 			'content_management' => 'مدیریت محتوا' ,
 			'admins' => 'مدیران سایت' ,
 			'calendar' => "سالنامه",
+			'applicants' => "متقاضیان",
 		],
 
 		"permits" => [

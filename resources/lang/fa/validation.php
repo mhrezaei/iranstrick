@@ -403,6 +403,9 @@ return [
 				'site_credit' => "اعتبار حساب",
 				'checked_by' => "بررسی‌کننده",
 				'color_code' => "رنگ شاخص",
+				'can_register' => "امکان ثبت نام",
+				'register_expires_at' => "مهلت ثبت نام",
+				'register_starts_at' => "آغاز ثبت نام",
 
 			'begins_at' => "آغاز",
 			'ends_at' => "پایان",

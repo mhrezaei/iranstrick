@@ -47,6 +47,7 @@ return [
 				'bank_accounts' => 'حساب‌های بانکی' ,
 				'bank_account' => 'حساب بانکی' ,
                 'set_password' => 'تنظیم رمز عبور',
+			'contact_info' => "اطلاعات تماس",
 		],
 		"form" => [
 				"deleted_person" => '[؟]' ,
@@ -125,6 +126,13 @@ return [
 			'location_address' => 'نشانی محل استقرار' ,
 			'about_site' => 'در مورد سایت' ,
 		],
+
+	'applicants' => [
+		'singular' => "متقاضی",
+		'nobody_yet' => "فعلاً بدون متقاضی",
+		'create' => "افزودن متقاضی",
+		'edit' => "ویرایش اطلاعات متقاضی",
+	],
 
 		'admins' => [
 			'ordinary' => 'مدیر عملیات' ,

@@ -65,6 +65,19 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 	| Posts
 	*/
 	Route::group(['prefix'=>'posts'] , function() {
+
+		Route::group(['prefix' => "applicants",] , function() {
+			Route::get('/update/{item_id}' , 'ApplicantsController@update');
+			Route::get('/edit/{item_id}' , 'ApplicantsController@edit');
+			Route::get('/{post_id}' , 'ApplicantsController@browse');
+			Route::get('/{post_id}/{keyword}' , 'ApplicantsController@browse');
+			Route::get('/{post_id}/create' , 'ApplicantsController@create');
+
+			Route::group(['prefix'=>'save'] , function() {
+				Route::post('/' , 'ApplicantsController@save');
+			});
+
+		});
 		Route::get('/update/{item_id}' , 'PostsController@update');
 		Route::get('/{branch_slug}' , 'PostsController@browse') ;
 		Route::get('{branch_slug}/edit/{post_id}' , 'PostsController@editor');
@@ -76,7 +89,10 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 			Route::post('/' , 'PostsController@save');
 			Route::post('/hard_delete' , 'PostsController@hard_delete');
 		});
+
 	});
+
+
 
 	/*
 	| Admins
