@@ -5,8 +5,6 @@
 	{!! Html::script('assets/js/calendar.js') !!}
 @endsection
 
-@section('page_title' , trans('manage.page_title'))
-
 @include("manage.frame.widgets.blank" , [
 	'1' => $entries = json_decode($entries_json),
 ])

@@ -70,8 +70,8 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 			Route::get('/update/{item_id}' , 'ApplicantsController@update');
 			Route::get('/edit/{item_id}' , 'ApplicantsController@edit');
 			Route::get('/{post_id}' , 'ApplicantsController@browse');
-			Route::get('/{post_id}/{keyword}' , 'ApplicantsController@browse');
 			Route::get('/{post_id}/create' , 'ApplicantsController@create');
+			Route::get('/{post_id}/{keyword}' , 'ApplicantsController@browse');
 
 			Route::group(['prefix'=>'save'] , function() {
 				Route::post('/' , 'ApplicantsController@save');
