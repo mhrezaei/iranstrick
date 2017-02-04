@@ -38,9 +38,9 @@
 			<table class="table table-hover">
 				<thead>
 				<tr>
-					<td>#</td>
+					<td width="100px">#</td>
 					<td>{{ trans('validation.attributes.title') }}</td>
-					<td>{{ trans('calendar.fields') }}</td>
+					<td width="200px">{{ trans('calendar.fields') }}</td>
 				</tr>
 				</thead>
 				<tbody>
@@ -50,8 +50,8 @@
 							@pd($key+1)
 						</td>
 						<td>
-							<a href="javascript:void(0)" onclick="masterModal('{{url("manage/settings/handles/edit/$model->id/")}}')">
-								<label class=" mh5 bg-{{$model->color_code}} " style="width: 15px;height: 15px;border: 1px solid black">&nbsp;</label>
+							<a href="javascript:void(0)" onclick="masterModal('{{url("manage/settings/handles/edit/$model->id/")}}')" class="text-{{$model->color_code}}">
+								<i class="fa fa-{{$model->icon}} text-{{$model->color_code}} f16 mh10"></i>
 								{{ $model->title }}
 							</a>
 						</td>

@@ -50,11 +50,14 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 	Route::group(['prefix'=>'calendar'] , function() {
 		Route::get('/' , 'CalendarController@index');
 		Route::get('/month/{year?}/{month?}/{day?}' , 'CalendarController@index');
-
 		Route::get('entry/new/{handle_id}/{year?}/{month?}/{day?}' , 'CalendarController@entryNew');
+		Route::get('entry/view/{entry_id}' , 'CalendarController@entryView');
+		Route::get('entry/edit/{entry_id}' , 'CalendarController@entryEdit');
+		Route::get('entry/remarksRefresh/{entry_id}' , 'CalendarController@remarksRefresh');
+
 		Route::group(['prefix'=>'save'] , function() {
 			Route::post('/entry' , 'CalendarController@entrySave');
-			Route::post('/entry_first_step' , 'CalendarController@entryFirstStep');
+			Route::post('/remark' , 'CalendarController@remarkSave');
 		});
 	});
 
@@ -62,6 +65,19 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 	| Posts
 	*/
 	Route::group(['prefix'=>'posts'] , function() {
+
+		Route::group(['prefix' => "applicants",] , function() {
+			Route::get('/update/{item_id}' , 'ApplicantsController@update');
+			Route::get('/edit/{item_id}' , 'ApplicantsController@edit');
+			Route::get('/{post_id}' , 'ApplicantsController@browse');
+			Route::get('/{post_id}/{keyword}' , 'ApplicantsController@browse');
+			Route::get('/{post_id}/create' , 'ApplicantsController@create');
+
+			Route::group(['prefix'=>'save'] , function() {
+				Route::post('/' , 'ApplicantsController@save');
+			});
+
+		});
 		Route::get('/update/{item_id}' , 'PostsController@update');
 		Route::get('/{branch_slug}' , 'PostsController@browse') ;
 		Route::get('{branch_slug}/edit/{post_id}' , 'PostsController@editor');
@@ -73,7 +89,10 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth', 'can:admin'], 'name
 			Route::post('/' , 'PostsController@save');
 			Route::post('/hard_delete' , 'PostsController@hard_delete');
 		});
+
 	});
+
+
 
 	/*
 	| Admins

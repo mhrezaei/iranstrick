@@ -40,6 +40,7 @@
 				<tr>
 					<td>#</td>
 					<td>{{ trans('validation.attributes.title') }}</td>
+					<td>{{ trans('validation.attributes.data_type') }}</td>
 					<td>{{ trans('forms.logic.required') }}</td>
 				</tr>
 				</thead>
@@ -48,6 +49,7 @@
 				<tr>
 					<td>@pd(1)</td>
 					<td>{{ trans('validation.attributes.description') }}</td>
+					<td>{{ trans('manage.settings.downstream_settings.data_type.textarea') }}</td>
 					<td><i class="fa fa-check f12 text-success"></i></td>
 				</tr>
 
@@ -60,6 +62,9 @@
 							<a href="javascript:void(0)" onclick="masterModal('{{url("manage/settings/handles/fields/edit/$model->id/")}}')">
 								{{ $model->title }}
 							</a>
+						</td>
+						<td>
+							{{ trans('manage.settings.downstream_settings.data_type.'.$model->data_type) }}
 						</td>
 						<td>
 							@if($model->required)

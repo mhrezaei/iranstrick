@@ -1,5 +1,6 @@
 @include('manage.frame.widgets.grid-rowHeader' , [
-	'refresh_url' => "manage/posts/update/$model->id"
+	'refresh_url' => "manage/posts/update/$model->id",
+	'fake' => $model->spreadMeta() ,
 ])
 <td>
 	@if($model->canEdit())
@@ -28,6 +29,17 @@
 		<div class="mv10 f10 text-grey">
 			{{ trans('posts.manage.deleted_by' , ['name'=>$model->say('deleted')])  }}
 		</div>
+	@endif
+	@if(Auth::user()->can('applicants.browse') and $model->can_register)
+		<a href="{{ url("manage/posts/applicants/$model->id") }}" class="btn btn-default btn-sm">
+			@if($applicants = $model->applicants()->count())
+				@pd($applicants)
+				&nbsp;
+				{{ trans('people.applicants.singular') }}
+			@else
+				{{ trans('people.applicants.nobody_yet') }}
+			@endif
+		</a>
 	@endif
 </td>
 

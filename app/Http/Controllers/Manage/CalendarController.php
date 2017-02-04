@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Manage\EntrySaveRequest;
+use App\Http\Requests\Manage\RemarkSaveRequest;
+use App\Models\Remark;
+use Illuminate\Http\Request;
 use App\Models\Domain;
 use App\Models\Entry;
 use App\Models\Handle;
@@ -48,15 +52,40 @@ class CalendarController extends Controller
 
 		//Model...
 		$handles = Handle::selector()->orderBy('title')->get() ;
+		$entries = Entry::selector([
+			'begins_before' => jDateTime::createCarbonFromFormat("Y/n/j" , $para['year'].'/'.$para['month'].'/31') ,
+			'ends_after' => jDateTime::createCarbonFromFormat("Y/n/j" , $para['year'].'/'.$para['month'].'/1'),
+		])->orderBy('begins_at')->get() ;
+
+		//Json...
+		$entries_table = [] ;
+		foreach($entries as $entry) {
+			$entry->handle->spreadMeta();
+			array_push($entries_table , [
+				'id' => $entry->id,
+				'title' => $entry->title,
+				'color_code' => $entry->handle->color_code,
+				'icon' => $entry->handle->icon ,
+				'begins_at' => AppServiceProvider::pd(jDate::forge($entry->begins_at)->format('j F Y')),
+				'ends_at' => AppServiceProvider::pd(jDate::forge($entry->ends_at)->format('j F Y')),
+				'days' => $entry->getDays($para),
+				'handle_trashed' => $entry->handle->trashed(),
+			]);
+		}
+		$entries_json = json_encode($entries_table) ;
 
 		//View...
-		return view("manage.calendar.month",compact('page' , 'date' , 'para' , 'month' , 'handles'));
+		return view("manage.calendar.month",compact('page' , 'date' , 'para' , 'month' , 'handles' , 'entries_json'));
 
 	}
 
 	public function entryNew($handle_id , $year = 0 , $month = 0 , $day = 0)
 	{
 		//Preparetions...
+		$handle = Handle::find($handle_id);
+		if(!$handle)
+			return view('errors.m410');
+
 		if($day>0) {
 			$date = CalendarServiceProvider::renderRequestDate($year , $month , $day) ;
 			if(!$date)
@@ -65,12 +94,116 @@ class CalendarController extends Controller
 
 		//Model...
 		$model = new Entry();
+		$model->handle_id = $handle->id ;
 		if($day > 0)
-			$model->from = $model->to = $date ;
+			$model->begins_at = $model->ends_at = $date ;
+
+		$fields = $handle->fields ;
 
 		//View...
-		return view("manage.calendar.entry_editor",compact('model'));
+		return view("manage.calendar.entry_editor",compact('model' , 'fields'));
 
+	}
+
+	public function entryEdit($entry_id)
+	{
+		//Preparetions...
+		$model = Entry::find($entry_id) ;
+		if(!$model)
+			return view('errors.m410');
+
+		$model->spreadMeta();
+//		$model->readonly = true ;
+
+//		return view('templates.say' , ['array'=>$model->toArray()]);
+
+		$fields = $model->handle->fields ;
+
+		//Showing...
+		return view("manage.calendar.entry_editor",compact('model' , 'fields'));
+
+	}
+
+	public function entryView($entry_id)
+	{
+		//Preparetions...
+		$model = Entry::find($entry_id) ;
+		if(!$model)
+			return view('errors.m410');
+
+		$model->spreadMeta() ;
+		$model->handle->spreadMeta() ;
+
+		//Showing...
+		return view("manage.calendar.entry_view",compact('model'));
+
+
+	}
+
+	public function entrySave(EntrySaveRequest $request)
+	{
+		//If Delete...
+		if($request->_submit == 'delete') {
+			$model = Entry::find($request->id) ;
+			if(!$model)
+				return $this->jsonFeedback();
+
+			return $this->jsonAjaxSaveFeedback($model->delete() , [
+					'success_refresh' => true,
+			]);
+
+		}
+
+		//Validation...
+		$handle = Handle::find($request->handle_id);
+		if(!$handle)
+			return $this->jsonFeedback(trans('validation.http.Error410'));
+
+
+
+		$fields = $handle->fields ;
+		foreach($fields as $field) {
+			$field->spreadMeta() ;
+			if($field->required and !$request->toArray()['field_'.$field->id]) 
+				return $this->jsonFeedback( trans('validation.required' , [
+					'attribute' => $field->title ,
+				]));
+				
+		}
+		
+
+		//Save and Return...
+		$saved = Entry::store($request);
+
+		return $this->jsonAjaxSaveFeedback($saved , [
+				'success_refresh' => true,
+//				'success_callback' => "rowUpdate('tblCurrencies','$request->id')",
+		]);
+
+
+
+	}
+
+	public function remarkSave(RemarkSaveRequest $request)
+	{
+		//Save and Return...
+		$saved = Remark::store($request);
+
+		return $this->jsonAjaxSaveFeedback($saved , [
+			'success_modalClose' => '0',
+			'success_callback' => "remarksRefresh('$request->entry_id')",
+		]);
+
+	}
+
+	public function remarksRefresh($entry_id)
+	{
+		//Model...
+		$model = Entry::find($entry_id);
+		if(!$model) return view('errors.m410');
+
+		//View...
+		return view("manage.calendar.entry_remarks",compact('model'));
 
 	}
 

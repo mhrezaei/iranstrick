@@ -14,6 +14,7 @@ trait PermitsTrait
 //		'tickets' => ['browse' , 'process' , 'edit' , 'report' , 'delete' , 'bin'] ,
 		'posts' => ['create','edit','publish','report','delete','bin'] ,
 		'calendar' => ['browse','process','view','create','edit','delete'],
+		'applicants' => ["browse" , "view" , "edit" , "delete" , "bin"],
 //		'payments' => [ 'browse' , 'process' , 'create' , 'edit' , 'report' , 'delete' , 'bin'],
 	];
 

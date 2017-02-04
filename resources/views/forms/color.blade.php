@@ -9,7 +9,7 @@
 	<div class="row">
 		@foreach($colors as $color)
 			<div class="col-lg-1 col-md-2 col-sm-4">
-				<div class=" {{ $value==$color? 'img-rounded' : 'img-circle' }} m5 bg-{{$color}} clickable colorCode" style="width: 40px;height: 40px;border: 1px solid black"
+				<div class=" {{ $value==$color? 'img-rounded' : 'img-circle' }} m5 bg-{{$color}} clickable colorCode" style="width: 30px;height: 30px;border: 1px solid black"
 					 onclick="$('.colorCode').removeClass('img-rounded').addClass('img-circle');$(this).removeClass('img-circle').addClass('img-rounded');$('{{"#txt_$name"}}').val('{{$color}}')"
 				>
 				</div>

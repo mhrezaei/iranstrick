@@ -154,10 +154,13 @@ class ValidationServiceProvider extends ServiceProvider
 				$data = str_replace(' - ',null , $data) ;
 				break;
 
+			case 'date+1s' :
+				$data .= ' 00:00:01' ;
+//				break ;
+
 			case 'date' :
-				//$data = Carbon::createFromTimestamp($data)->toDateTimeString();
 				$carbon = new Carbon($data) ;
-				$data = $carbon->toDateString();
+				$data = $carbon->toDateTimeString();
 				break ;
 
 			case 'time' :

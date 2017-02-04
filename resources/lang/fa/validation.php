@@ -27,7 +27,7 @@ return [
 
 		"accepted"         => ":attribute باید پذیرفته شده باشد.",
 		"active_url"       => "نشانی :attribute معتبر نیست",
-		"after"            => ":attribute منطقی نیست." , ":attribute باید تاریخی بعد از :date باشد.",
+		"after"            => "تاریخ «:attribute» منطقی نیست." , ":attribute باید تاریخی بعد از :date باشد.",
 		"alpha"            => ":attribute باید شامل حروف الفبا باشد.",
 		"alpha_dash"       => ":attribute فقط می‌تواند شامل حروف الفبا و عدد و خط (underline یا dash) باشد.",
 		"alpha_num"        => ":attribute باید شامل حروف الفبا و عدد باشد.",
@@ -403,6 +403,12 @@ return [
 				'site_credit' => "اعتبار حساب",
 				'checked_by' => "بررسی‌کننده",
 				'color_code' => "رنگ شاخص",
+				'can_register' => "امکان ثبت نام",
+				'register_expires_at' => "مهلت ثبت نام",
+				'register_starts_at' => "آغاز ثبت نام",
+
+			'begins_at' => "آغاز",
+			'ends_at' => "پایان",
 		],
 
 		"http" => [

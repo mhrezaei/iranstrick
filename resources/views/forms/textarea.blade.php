@@ -1,6 +1,8 @@
 <?php
 if(!isset($extra))
     $extra = '' ;
+if(!isset($in_form))
+    $in_form = true ;
 
 if(isset($class) && str_contains($class, 'form-required')) {
     $required = true;
@@ -17,6 +19,7 @@ if(isset($disabled) and $disabled) {
 ?>
 @if(!isset($condition) or $condition)
 
+    @if($in_form)
     <div class="form-group">
         <label
                 for="{{$name}}"
@@ -33,6 +36,7 @@ if(isset($disabled) and $disabled) {
         </label>
 
         <div class="col-sm-10">
+            @endif
             <textarea
                     id="{{$id or ''}}"
                     name="{{$name}}" value="{{$value or ''}}"
@@ -41,9 +45,11 @@ if(isset($disabled) and $disabled) {
                     rows="{{$rows or 5}}"
                     {{$extra or ''}}
             >{{$value or ''}}</textarea>
+            @if($in_form)
             <span class="help-block">
                 {{ $hint or '' }}
             </span>
         </div>
     </div>
+        @endif
 @endif

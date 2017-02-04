@@ -33,11 +33,20 @@ class CalendarServiceProvider extends ServiceProvider
         elseif($year < 100)
             $year = "13".$year ;
 
-        if(!$month)
+        if(!$month && !$day) //means user didn't input anything
             $month = $now->format('m');
+        if(!$month && $day > 0) { //means user is looking for the previous month of Farvardin
+            $month = 12 ;
+            $year-- ;
+        }
 
         if(!$day)
             $day = $now->format('j')  ;
+
+        if($month>12) {
+            $month = $month - 12 ;
+            $year++ ;
+        }
 
         if(!jDateTime::checkDate($year , $month , $day))
             return false; //view('errors.410');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\models\Branch;
+use App\Models\Entry;
+use App\Models\Handle;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Post;
@@ -20,6 +22,7 @@ class TestController extends Controller
 {
 	public function index()
 	{
+		Handle::makeMiscRecord();
 
 	}
 

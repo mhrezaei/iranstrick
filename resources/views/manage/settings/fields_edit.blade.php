@@ -17,6 +17,15 @@
 	    'hint' =>	trans('validation.hint.unique').' | '.trans('validation.hint.persian-only'),
 	])
 
+	@include('forms.select' , [
+		'name' => 'data_type' ,
+		'class' => 'form-required',
+		'options' => $model->dataTypes() ,
+		'caption_field' => '1' ,
+		'value_field' => '0' ,
+		'value' => $model->data_type ,
+	])
+
 	@include("forms.check-form" , [
 		'name' => "required",
 		'value' => $model,

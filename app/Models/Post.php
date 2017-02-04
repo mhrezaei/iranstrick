@@ -44,6 +44,10 @@ class Post extends Model
 	| All standard laravel-based realtions and custom ones are grouped here.
 	*/
 
+	public function applicants()
+	{
+		return $this->hasMany('App\Models\Applicant');
+	}
 
 	public function category()
 	{

@@ -30,8 +30,10 @@ class HandleSaveRequest extends Request
         $input = $this->all();
         if($input['_submit']=='save') {
             return [
-                 'title' => 'required|unique:handles,title,'.$input['id'].',id',
+//                 'title' => 'required|unique:handles,title,'.$input['id'].',id',
+                'title' => "required",
                  'color_code' => 'required|in:'.implode(',',Handle::$available_color_codes) ,
+                 'icon' => 'required|in:'.implode(',',Handle::$available_icons) ,
             ];
         }
         else {

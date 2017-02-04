@@ -13,7 +13,14 @@
 	    'name' =>	'title',
 	    'value' =>	$model->title,
 	    'class' => 'form-required form-default' ,
-	    'hint' =>	trans('validation.hint.unique').' | '.trans('validation.hint.persian-only'),
+//	    'hint' =>	trans('validation.hint.unique').' | '.trans('validation.hint.persian-only'),
+	])
+
+	@include("forms.icon" , [
+		'name' => "icon",
+		'required' => true,
+		'icons' => $model->available_icons,
+		'value' => $model->icon,
 	])
 
 	@include("forms.color" , [
@@ -22,6 +29,10 @@
 		'colors' => $model->available_color_codes,
 		'value' => $model->color_code,
 	])
+
+	@include("forms.sep")
+
+
 	@if($model->id and $entries = $model->entries()->count())
 		@include('forms.note' , [
 			'shape' => 'warning' ,
