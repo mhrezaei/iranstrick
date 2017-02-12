@@ -31,13 +31,11 @@
                 @foreach($news as $new)
                 <article class="article">
                     <div class="title-bar">
-                        <a href="{{ $new->say('link') }}"><h4 class="title">{{ $new->title }}</h4></a>
-                        <h6 class="show-more">{{ $new->say('published_at') }}</h6>
+                        <a href="{{ $new->say('link') }}"> <h4 class="title">{{ $new->title }}</h4></a>
+                        <span class="show-more">{{ $new->say('published_at') }}</span>
                     </div>
                     <div class="content">
-                        <a href="{{ $new->say('link') }}">
-                            <img src="{{ $new->say('featured_image') }}" alt="{{ $new->say('title') }}" class="pull-right">
-                        </a>
+                        <a href="{{ $new->say('link') }}"><img src="{{ $new->say('featured_image') }}" alt="{{ $new->title }}" class="block"></a>
                         {{ $new->say('abstract') }}
                     </div>
                 </article>

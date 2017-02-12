@@ -38,6 +38,7 @@
     <li><a href="{{ url('/en/contact') }}">{{ trans('front.contact_us') }}</a></li>
     <li class="languages">
         <a href="{{ url('/en') }}" class="active">English</a>
-        <a href="{{ url('/fa') }}">فارسی</a>
+        <a href="#">فارسی</a>
+        {{--<a href="{{ url('/fa') }}">فارسی</a>--}}
     </li>
 </ul>

@@ -9,7 +9,7 @@
             @foreach($expo as $ex)
             <div class="item">
                 <div class="image">
-                    <img src="{{ $ex->say('featured_image') }}">
+                    <img src="{{ $ex->say('featured_image') }}" width="295" height="197">
                 </div>
                 <div class="text">
                     <a href="{{ $ex->say('link') }}">

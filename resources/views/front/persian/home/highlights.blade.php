@@ -10,7 +10,7 @@
                     @foreach($news as $new)
                     <div class="item">
                         <div class="image">
-                            <img src="{{ $new->say('featured_image') }}" width="360" height="140" alt="1">
+                            <img src="{{ $new->say('featured_image') }}" width="295" height="197">
                         </div>
                         <div class="text">
                             <a href="{{ $new->say('link') }}">

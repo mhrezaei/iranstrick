@@ -24,8 +24,8 @@
                     {{--</div>--}}
                 {{--</div>--}}
             </div>
-            {{--@include('front.persian.home.highlights')--}}
+            @include('front.persian.home.highlights')
         </div>
-{{--        @include('front.persian.home.links')--}}
+        @include('front.persian.home.links')
     </div>
 @endsection
