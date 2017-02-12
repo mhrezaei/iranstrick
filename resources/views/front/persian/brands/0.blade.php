@@ -27,7 +27,7 @@
             <h3>{{ trans('front.about') }} {{ $brand->tile }}</h3>
         </div>
         <div class="about-brand">
-            {{ $brand->abstract }}
+            {!! $brand->abstract !!}
         </div>
 
         @if(sizeof($products))
