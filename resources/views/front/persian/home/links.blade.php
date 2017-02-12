@@ -6,7 +6,7 @@
                 <h3>{{ trans('front.agency') }}</h3>
             </div>
             <div class="content">
-                <div class="owl-carousel links-slider">
+                <div class="owl-carousel links-slider small-nav solid-nav offset-nav">
                     @foreach($agency as $agen)
                         <div class="item">
                             <a href="{{ url('/' . Setting::getLocale() .'/products/' . $agen->get_branch()->slug . '/' . $agen->parent->slug . '/' . $agen->slug) }}">

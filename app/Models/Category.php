@@ -55,7 +55,7 @@ class Category extends Model
 
     public function get_children()
     {
-        return self::where('parent_id', $this->id)->orderBy('title', 'asc')->get();
+        return self::where('parent_id', $this->id)->orderBy('id', 'asc')->get();
 	}
 
     public function get_branch()

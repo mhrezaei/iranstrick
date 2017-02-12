@@ -14,9 +14,8 @@
                 <div class="text">
                     <a href="{{ $ex->say('link') }}">
                         <h5>{{ $ex->title }}</h5>
-                        {{--<span class="date">24 - 27 Jan 2016</span>--}}
                     </a>
-{{--                    <p>{{ $ex->say('abstract') }}</p>--}}
+                    {{--<p>Ad aliqua laboris occaecat commodo reprehenderit.</p>--}}
                 </div>
             </div>
             @endforeach

@@ -34,11 +34,11 @@
     $(document).ready(function () {
         $(".main-header-slider").owlCarousel({
             autoplay: true,
-            autoplaySpeed: 500,
+            autoplaySpeed: 1000,
             items: 1,
-            autoplayHoverPause: false,
+            autoplayHoverPause: true,
             dots: false,
-            goToFirstSpeed: 1000,
+            goToFirstSpeed: 2000,
             loop: true,
             nav: true,
             responsive:{
@@ -73,10 +73,11 @@
             pullDrag: false,
             loop: true,
             autoplay: true,
+            autoplaySpeed: 1000,
+            autoplayTimeout: 3000,
             autoplayHoverPause: true,
             nav: true,
             animateOut: 'fadeOut',
-            dots: false,
         });
         $(".highlights-slider-text").owlCarousel({
             autoplayHoverPause: true,
@@ -86,6 +87,7 @@
             pullDrag: false,
             loop: true,
             autoplay: true,
+            animateOut: 'fadeOut',
         });
         var sliderTimeout;
         $(".highlights-slider, .highlights-slider-text").hover(function(){
@@ -105,10 +107,25 @@
             autoplay: true,
             loop: true,
             dots: false,
-            autoWidth: true,
-            items: 5,
+            items: 6,
             margin: 30,
             mouseDrag: false,
+            nav: true,
+            autoplayTimeout: 2500,
+            responsive:{
+                0:{
+                    items: 4
+                },
+                800:{
+                    items: 6
+                },
+                1200:{
+                    items: 7
+                },
+                1600:{
+                    items: 8
+                }
+            }
         });
 
         $(".expo-slider").owlCarousel({

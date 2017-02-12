@@ -11,11 +11,21 @@
         <div class="row mobile-reverse">
             <div class="col-md-4">
                 @include('front.persian.home.expo')
-{{--                @include('front.persian.home.downloads')--}}
+                {{--<div class="widget">--}}
+                    {{--<div class="title-bar">--}}
+                        {{--<h3>Downloads</h3>--}}
+                    {{--</div>--}}
+                    {{--<div class="content">--}}
+                        {{--<ul>--}}
+                            {{--<li><a href="">A beauty title comes here</a></li>--}}
+                            {{--<li><a href="">Another title comes here soon</a></li>--}}
+                            {{--<li><a href="">One more title</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
-            @include('front.persian.home.highlights')
+            {{--@include('front.persian.home.highlights')--}}
         </div>
-        @include('front.persian.home.links')
-    </div>
+{{--        @include('front.persian.home.links')--}}
     </div>
 @endsection
