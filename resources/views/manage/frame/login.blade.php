@@ -1,4 +1,4 @@
-w@extends ('layouts.plane')
+@extends ('layouts.plane')
 @section ('body')
 <div class="container">
         <div class="row">

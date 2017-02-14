@@ -35,7 +35,7 @@
 
 	@include("forms.textarea" , [
 		'name' => "abstract",
-		'class' => "",
+		'class' => "tinyMini",
 		'value' => $model,
 	])
 
@@ -112,3 +112,4 @@
 
 </div>
 @include('templates.modal.end')
+<script>tinymce.init(mini_config);</script>
